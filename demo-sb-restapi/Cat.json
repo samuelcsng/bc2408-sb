@@ -1,0 +1,15 @@
+{
+  "name" : "catName",
+  "age" : 10,
+  "eyes" : [
+    {
+      "color" : "RED"
+    },
+    {
+      "color" : "RED"
+    }
+  ],
+  "tail" : {
+    "length" : 13.0
+  }
+}

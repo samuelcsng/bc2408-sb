@@ -1,52 +1,36 @@
 package com.bootcamp.demo.demo_sb_restapi.model.dto.jph;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
-@Builder
 public class UserDTO {
   private int id;
   private String name;
   private String username;
-  private String email;
-  private Address address;
+  private Address address; // One-to-one
   private String phone;
   private String website;
-  private Company company;
+  private Company company; // One-to-one
 
-  @AllArgsConstructor
-  @NoArgsConstructor
   @Getter
-  @Builder
   public static class Address {
     private String street;
     private String suite;
     private String city;
     private String zipcode;
-    private GEO geo;
-    @AllArgsConstructor
-    @NoArgsConstructor
+    private Geo geo;
+
     @Getter
-    @Builder
-    public static class GEO {
+    public static class Geo {
       private String lat;
       private String lng;
     }
   }
-  
-  @AllArgsConstructor
-  @NoArgsConstructor
+
   @Getter
-  @Builder
-  private static class Company {
+  public static class Company {
     private String name;
     private String catchPhrase;
     private String bs;
   }
-  
 }

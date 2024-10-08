@@ -19,7 +19,8 @@ public class HangSengCatController {
   }
 
   // 2. return List of cat ("Peter", "Vincent")
-  @GetMapping(value = "/HangSeng/cats")
+  @GetMapping(value = "/cats")
+  // @GetMapping(value = "/HangSeng/cats")
   public List<HangSengCatDTO> getCats() {
     List<Cat> cats = List.of(new Cat("Vincent", 13, Color.RED, 13.0),
         new Cat("Peter", 10, Color.BLUE, 8));

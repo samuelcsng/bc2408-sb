@@ -5,8 +5,6 @@ import java.util.List;
 import org.springframework.web.bind.annotation.RestController;
 import com.bootcamp.demo.demo_sb_restapi.DemoSbRestapiApplication;
 import com.bootcamp.demo.demo_sb_restapi.controller.BeanOperation;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 @RestController

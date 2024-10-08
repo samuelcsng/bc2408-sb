@@ -25,7 +25,7 @@ public class CalculatorController {
 
   @GetMapping(value = "/multiply/{x}/{y}")
   public int multiply(@PathVariable int x, @PathVariable int y) {
-    return x * y;
+    return x + y;
   }
 
   // 1. divide zero, return "x and y should be non-zero integer."

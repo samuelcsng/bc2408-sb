@@ -34,6 +34,11 @@ public class DatabaseController implements DatabaseOperation {
         .collect(Collectors.toList());
   }
 
+  @Override
+  public int get2(int index) {
+    return Database.integers[index];
+  }
+
 
 
 }

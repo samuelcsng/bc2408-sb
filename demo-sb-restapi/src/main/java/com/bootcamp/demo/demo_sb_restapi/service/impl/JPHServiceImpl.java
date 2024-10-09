@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import com.bootcamp.demo.demo_sb_restapi.entity.UserEntity;
+import com.bootcamp.demo.demo_sb_restapi.exception.JPHRestClientException;
 import com.bootcamp.demo.demo_sb_restapi.mapper.JPHMapper;
 import com.bootcamp.demo.demo_sb_restapi.model.Cat;
 import com.bootcamp.demo.demo_sb_restapi.model.dto.jph.UserDTO;
@@ -18,9 +20,6 @@ import com.bootcamp.demo.demo_sb_restapi.util.Url;
 
 @Service // Component annotation -> bean
 public class JPHServiceImpl implements JPHService {
-
-  // @Autowired
-  // restTemplateForJPH;
   @Autowired
   @Qualifier(value = "JPHRestTemplate") // inject bean by specific bean name
   private RestTemplate restTemplate;
@@ -30,6 +29,9 @@ public class JPHServiceImpl implements JPHService {
 
   @Autowired
   private UserRepository userRepository;
+
+  @Autowired
+  private JPHMapper jphMapper;
 
   // ! @Value (inject from yml) is similar to @Autowired (inject from Spring Context)
   // Both of them has to be executed before server start
@@ -67,7 +69,13 @@ public class JPHServiceImpl implements JPHService {
         .toUriString() //
     ;
     System.out.println("url=" + url);
-    UserDTO[] users = this.restTemplate.getForObject(url, UserDTO[].class); // 10ms
+    // Happy Path
+    UserDTO[] users;
+    try {
+    users = this.restTemplate.getForObject(url, UserDTO[].class); // 10ms
+    } catch (RestClientException e) {
+      throw new JPHRestClientException("Json Placeholder Exception.");
+    }
     return List.of(users);
   }
 
@@ -86,11 +94,15 @@ public class JPHServiceImpl implements JPHService {
   private List<UserEntity> saveUsers(List<UserDTO> userDTOs) {
     // Mapper: from List<UserDTO> to List<UserEntity>
     List<UserEntity> userEntities = userDTOs.stream() //
-        .map(e -> JPHMapper.map(e)) //
+        // .map(e -> JPHMapper.map(e)) //
+        .map(e -> this.jphMapper.map(e)) //
         .collect(Collectors.toList()) //
     ;
     return userRepository.saveAll(userEntities);
   }
+
+  // saveUser(int id)
+  // -> stream filter -> save()
 
 
 }

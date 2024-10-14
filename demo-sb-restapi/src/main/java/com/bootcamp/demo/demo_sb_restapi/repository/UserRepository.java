@@ -14,6 +14,8 @@ import com.bootcamp.demo.demo_sb_restapi.entity.UserEntity;
 public interface UserRepository extends JpaRepository<UserEntity, Long> {
   // 1. save(): UserEntity & saveAll()
   // 2. findAll
+
+  
 }
 
 // ! Concept of Hibernate:

@@ -6,6 +6,9 @@ import com.bootcamp.demo.demo_sb_restapi.dto.HangSengCatDTO;
 import com.bootcamp.demo.demo_sb_restapi.model.Cat;
 
 public class HangSengMapper {
+  
+  // def map(abc)
+  // def map(ijk)
 
   public static List<HangSengCatDTO> map(List<Cat> cats) {
     return cats.stream() //

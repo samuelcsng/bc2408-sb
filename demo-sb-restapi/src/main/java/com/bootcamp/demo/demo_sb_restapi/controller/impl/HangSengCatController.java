@@ -1,10 +1,12 @@
 package com.bootcamp.demo.demo_sb_restapi.controller.impl;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.bootcamp.demo.demo_sb_restapi.dto.HangSengCatDTO;
+import com.bootcamp.demo.demo_sb_restapi.dto.HangSengCatDTO.Tail;
 import com.bootcamp.demo.demo_sb_restapi.mapper.HangSengMapper;
 import com.bootcamp.demo.demo_sb_restapi.model.Cat;
 import com.bootcamp.demo.demo_sb_restapi.model.Color;
@@ -20,7 +22,6 @@ public class HangSengCatController {
 
   // 2. return List of cat ("Peter", "Vincent")
   @GetMapping(value = "/cats")
-  // @GetMapping(value = "/HangSeng/cats")
   public List<HangSengCatDTO> getCats() {
     List<Cat> cats = List.of(new Cat("Vincent", 13, Color.RED, 13.0),
         new Cat("Peter", 10, Color.BLUE, 8));

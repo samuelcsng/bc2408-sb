@@ -1,11 +1,13 @@
 package com.bootcamp.demo.demo_sb_restapi.mapper;
 
+import org.springframework.stereotype.Component;
 import com.bootcamp.demo.demo_sb_restapi.entity.UserEntity;
 import com.bootcamp.demo.demo_sb_restapi.model.dto.jph.UserDTO;
 
-// JPHMapper -> object (bean) -> map
+// JPHMapper -> object (bean) -> map()
+@Component
 public class JPHMapper {
-  // public static UserEntity map(UserDTO userDTO) {
+  // reivse from static method to instance
   public UserEntity map(UserDTO userDTO) {
     return UserEntity.builder() //
         .addrLat(userDTO.getAddress().getGeo().getLat()) //
@@ -21,7 +23,6 @@ public class JPHMapper {
         .username(userDTO.getUsername()) //
         .phone(userDTO.getPhone()) //
         .website(userDTO.getWebsite()) //
-        .build() //
-    ;
+        .build();
   }
 }

@@ -1,6 +1,7 @@
 package com.bootcamp.demo.demo_sb_restapi.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -21,7 +22,7 @@ import com.bootcamp.demo.demo_sb_restapi.util.Url;
 @Service // Component annotation -> bean
 public class JPHServiceImpl implements JPHService {
   @Autowired
-  @Qualifier(value = "JPHRestTemplate") // inject bean by specific bean name
+  @Qualifier(value = "JPHRestTemplate") // inject bean by speicifc bean name
   private RestTemplate restTemplate;
 
   @Autowired
@@ -33,30 +34,14 @@ public class JPHServiceImpl implements JPHService {
   @Autowired
   private JPHMapper jphMapper;
 
-  // ! @Value (inject from yml) is similar to @Autowired (inject from Spring Context)
+  // ! @Value (inject from yml) is similar to @Autowired (inject from Spring
+  // Context)
   // Both of them has to be executed before server start
   @Value("${api.jph.domain}")
   private String jphDomain;
 
   @Value("${api.jph.endpoints.users}")
   private String usersEndpoint;
-
-
-  // @Override
-  // public List<UserDTO> getUsers() {
-  // UserDTO[] users = new RestTemplate().getForObject(
-  // "https://jsonplaceholder.typicode.com/users", UserDTO[].class);
-  // // return List.of(users); // to list
-  // // return List.of(users).stream() //
-  // // .collect(Collectors.toList()) //
-  // // ;
-  // // return Stream.of(users) //
-  // // .collect(Collectors.toList()) //
-  // // ;
-  // return Arrays.stream(users) //
-  // .collect(Collectors.toList()) //
-  // ;
-  // }
 
   @Override
   public List<UserDTO> getUsers() {
@@ -66,23 +51,17 @@ public class JPHServiceImpl implements JPHService {
         .domain(this.jphDomain) //
         .endpoint(this.usersEndpoint) //
         .build() //
-        .toUriString() //
-    ;
+        .toUriString();
     System.out.println("url=" + url);
     // Happy Path
     UserDTO[] users;
     try {
-    users = this.restTemplate.getForObject(url, UserDTO[].class); // 10ms
+      users = this.restTemplate.getForObject(url, UserDTO[].class);
     } catch (RestClientException e) {
       throw new JPHRestClientException("Json Placeholder Exception.");
     }
     return List.of(users);
   }
-
-  // @Override
-  // public List<UserDTO> saveUsers(List<UserDTO> userDTOs){
-  // return UserRepository.saveAll(userDTOs);
-  // }
 
   @Override
   public List<UserEntity> saveUsers() {
@@ -94,15 +73,51 @@ public class JPHServiceImpl implements JPHService {
   private List<UserEntity> saveUsers(List<UserDTO> userDTOs) {
     // Mapper: from List<UserDTO> to List<UserEntity>
     List<UserEntity> userEntities = userDTOs.stream() //
-        // .map(e -> JPHMapper.map(e)) //
         .map(e -> this.jphMapper.map(e)) //
-        .collect(Collectors.toList()) //
-    ;
+        .collect(Collectors.toList());
     return userRepository.saveAll(userEntities);
   }
 
   // saveUser(int id)
   // -> stream filter -> save()
 
+  @Override
+  public Boolean deleteUser(Long id) {
+    if (this.userRepository.findById(id).isPresent()) {
+      this.userRepository.deleteById(id);
+      return true;
+    }
+    return false;
+  }
 
+  // save(): create or replace
+  @Override
+  public UserEntity updateUser(Long id, UserEntity entity) {
+    if (id == null || entity == null || !id.equals(entity.getId())) {
+      throw new IllegalArgumentException();
+    }
+    if (this.userRepository.findById(id).isPresent()) {
+      return this.userRepository.save(entity);
+    }
+    return null; // throw new NotFoundException()
+  }
+
+  @Override
+  public UserEntity patchUserWebsite(Long id, String website) {
+    if (id == null || website == null) {
+      throw new IllegalArgumentException();
+    }
+    Optional<UserEntity> userEntity = this.userRepository.findById(id);
+    if (userEntity.isPresent()) {
+      UserEntity entity = userEntity.get();
+      entity.setWebsite(website);
+      return this.userRepository.save(entity);
+    }
+    return null; // throw new NotFoundException()
+  }
+
+  @Override
+  public UserEntity createUser(UserEntity userEntity) {
+    return this.userRepository.save(userEntity);
+  }
 }

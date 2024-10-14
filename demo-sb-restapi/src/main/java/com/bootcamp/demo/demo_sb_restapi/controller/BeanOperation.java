@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 public interface BeanOperation {
   @GetMapping("/beans")
-  public List<String> getBeans();
-  
+  List<String> getBeans();
+
   @GetMapping("/beans/x")
-  public int getX();
+  int getX();
 }

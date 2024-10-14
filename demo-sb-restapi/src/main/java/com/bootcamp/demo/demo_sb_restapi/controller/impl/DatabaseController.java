@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bootcamp.demo.demo_sb_restapi.controller.DatabaseOperation;
 import com.bootcamp.demo.demo_sb_restapi.model.Database;
 
-
 // @Controller
 // @ResponseBody // JSON format
 @RestController // @Controller + @ResponseBody
 public class DatabaseController implements DatabaseOperation {
+  
   // APIs
   // 1. int put(int index, int integer)
   public int put(int index, int value) {
@@ -26,6 +26,9 @@ public class DatabaseController implements DatabaseOperation {
     return Database.integers[index];
   }
 
+  public int get2(int index) {
+    return Database.integers[index];
+  }
 
   // 3. List<Integer> getAll()
   public List<Integer> getAll() {
@@ -33,12 +36,4 @@ public class DatabaseController implements DatabaseOperation {
         .boxed() //
         .collect(Collectors.toList());
   }
-
-  @Override
-  public int get2(int index) {
-    return Database.integers[index];
-  }
-
-
-
 }

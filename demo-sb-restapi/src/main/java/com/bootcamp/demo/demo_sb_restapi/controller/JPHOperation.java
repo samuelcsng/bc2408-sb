@@ -36,4 +36,7 @@ public interface JPHOperation {
   @PostMapping("/jph/user")
   UserEntity createUser(@RequestBody UserEntity userEntity);
 
+  @GetMapping("/jph/user/website/{website}")
+  UserEntity getUser(@PathVariable String website);
+
 }

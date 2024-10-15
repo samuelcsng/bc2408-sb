@@ -1,6 +1,7 @@
 package com.bootcamp.demo.demo_sb_restapi.service;
 
 import java.util.List;
+import java.util.Optional;
 import com.bootcamp.demo.demo_sb_restapi.entity.UserEntity;
 import com.bootcamp.demo.demo_sb_restapi.model.dto.jph.UserDTO;
 
@@ -18,4 +19,6 @@ public interface JPHService {
   UserEntity updateUser(Long id, UserEntity entity);
 
   UserEntity patchUserWebsite(Long id, String website);
+
+  Optional<UserEntity> findByWebsite(String websiteString);
 }

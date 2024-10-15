@@ -120,4 +120,9 @@ public class JPHServiceImpl implements JPHService {
   public UserEntity createUser(UserEntity userEntity) {
     return this.userRepository.save(userEntity);
   }
+
+  @Override
+  public Optional<UserEntity> findByWebsite(String website) {
+    return this.userRepository.findByWebsite(website);
+  }
 }

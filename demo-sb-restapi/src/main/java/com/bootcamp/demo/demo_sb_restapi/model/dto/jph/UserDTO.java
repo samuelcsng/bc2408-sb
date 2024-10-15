@@ -1,7 +1,13 @@
 package com.bootcamp.demo.demo_sb_restapi.model.dto.jph;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Builder
+@Setter
 @Getter
 public class UserDTO {
   private int id;
@@ -12,7 +18,9 @@ public class UserDTO {
   private String website;
   private Company company; // One-to-one
 
+  @Setter
   @Getter
+  @AllArgsConstructor
   public static class Address {
     private String street;
     private String suite;
@@ -21,6 +29,8 @@ public class UserDTO {
     private Geo geo;
 
     @Getter
+    @AllArgsConstructor
+    @NoArgsConstructor
     public static class Geo {
       private String lat;
       private String lng;
@@ -28,6 +38,8 @@ public class UserDTO {
   }
 
   @Getter
+  @AllArgsConstructor
+  @NoArgsConstructor
   public static class Company {
     private String name;
     private String catchPhrase;

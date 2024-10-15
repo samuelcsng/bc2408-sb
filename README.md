@@ -4,19 +4,9 @@
 
 ***
 ## Week-9 Day-3 20241002
-- FurnitureFactory solution
-  - mvn clean
-  - mvn clean compile
-  - mvn clean test
-  - mvn clean test -Dtest=xxxTest.java
-  - mvn clean install
+### Maven
 
-- HashMap.getOrDefault(...)
-
-- review Mockito
-  - @Mock
-  - @InjectMocks
-
+### Spring Boot
 ### week 10(materials)
   - Spring Boot I
     - Web Fundamentals
@@ -33,3 +23,149 @@
       - HTTP: port 80
       - SSH: port 22 ???
       - HTTPS: port 443 ???
+
+- Spring Boot
+  - Spring Boot Version 3 -> Spring Version 6
+  - mvn spring-boot:run
+  - @Controller
+  - @ResponseBody
+  - @GetMapping(value = "...")
+
+
+
+***
+## Week-9 Day-4 20241003
+
+- Spring boot pom.xml
+  - dependency: devtools
+  ```
+  <!-- Auto-recompile and restart server -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-devtools</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+  ```
+
+- JSON
+  - Chrome extension
+    - JSON formatter
+  - serialization deserialization
+- List.of()
+- DTO (Data Transfer Object), represents JSON object
+
+- Model > Mapper > DTO > Controller
+- Controller > DTO Mapper( Model ) 
+- API Gateway
+
+***
+## Week-9 Day-5 20241004
+
+- AWS(Region > Availability Zone) Server EC2
+- pom.xml
+  -<scope> test </scope>
+  -<build> ...
+
+- AWS Certification Pathways
+  - Solution architect
+  - Software Development Engineer
+
+- Server EC2
+  - Web Layer > Controller > Service > Repository
+- Server RDB-PostgreSQL
+
+- @RestController = @Controller + @ResponseBody
+
+
+***
+## Week-10 Day-1 20241007
+
+- @Autowired(required = false)
+- Single Thread vs Multi-Thread
+- Spring vs Spring Boot
+- Spring Context
+- Database Dependency
+  JPA + PostgreSQL DB
+- Spring Concept
+  - bean
+  - IoC (Inversion of Control)
+  - dependency injection
+
+***
+## Week-10 Day-2 20241008
+
+- @Bean
+  - @Component
+    - @Controller
+    - @Service
+    - @Repository
+- @Configuration
+- @Autowired
+- @RestControllerAdvice
+  - @ExceptionHandler({RestClientException.class})
+- @PathVariable vs @RequestParam()
+- @ResponseStatus(...)
+- Restful API
+  - URI -> resource
+  - Get, Post, Delete, Put
+    - @DeleteMapping -> SQL: delete from
+    - @PutMapping -> SQL: update
+    - @GetMapping -> SQL: Select
+    - @PostMapping -> SQL: insert into
+- JSON payload of
+
+
+
+***
+## Week-10 Day-3 20241009
+### Career Day
+- CV
+- JobsDB
+- LinkedIn
+- BA vs development
+- In-house(stable, ) vs Vendor(MNC) vs System Integrator(SI)(or Solution Provider)
+- Criteria
+  - Tech Stacks > Project Scale > Job Contenct > Company
+
+
+
+
+***
+## Week-10 Day-4 20241010
+- jobsDB
+- career related
+
+- Spring Boot
+  - Controller call Service, Service call Repository
+  - DTO mapper (combine multiple SQL-DB Tables (using Join or ...) to one single DTO and send to consumer client request)
+
+
+
+***
+## Week-10 Day-1 20241011
+- mvn compile (main code)
+- mvn test-compile (test code)
+- mvn test (main compile + test compile + test), test -> bean cycle + server starts (i.e. check autowired)
+- mvn package (all the above + generate jar)
+- mvn install (all the above + copy the jar from project to .m2)
+
+- @WebMvcTest(...)
+  - @MockBean
+
+- JPA
+  - Hibernate
+
+***
+## Week-11 Day-2 20241014
+
+
+***
+## Week-11 Day-3 20241015
+
+
+***
+## Week-11 Day-4 20241016
+
+
+***
+## Week-11 Day-5 20241017

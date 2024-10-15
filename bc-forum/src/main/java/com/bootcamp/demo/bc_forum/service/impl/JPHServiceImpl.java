@@ -23,6 +23,7 @@ public class JPHServiceImpl implements JPHService {
     try {
       users = this.restTemplate.getForObject(
           "https://jsonplaceholder.typicode.com/users", UserDTO[].class);
+      // System.out.println("users count: " + users.length);
     } catch (RestClientException e) {
       System.out.println(e.getMessage());
     }

@@ -6,9 +6,10 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
-import com.bootcamp.demo.bc_forum.model.dto.jph.CommentDTO;
-import com.bootcamp.demo.bc_forum.model.dto.jph.PostDTO;
-import com.bootcamp.demo.bc_forum.model.dto.jph.UserDTO;
+
+import com.bootcamp.demo.bc_forum.model.Comment;
+import com.bootcamp.demo.bc_forum.model.Post;
+import com.bootcamp.demo.bc_forum.model.User;
 import com.bootcamp.demo.bc_forum.service.JPHService;
 
 @Service
@@ -18,11 +19,11 @@ public class JPHServiceImpl implements JPHService {
   private RestTemplate restTemplate;
 
   @Override
-  public List<UserDTO> getUsers() {
-    UserDTO[] users = new UserDTO[0];
+  public List<User> getUsers() {
+    User[] users = new User[0];
     try {
       users = this.restTemplate.getForObject(
-          "https://jsonplaceholder.typicode.com/users", UserDTO[].class);
+          "https://jsonplaceholder.typicode.com/users", User[].class);
       // System.out.println("users count: " + users.length);
     } catch (RestClientException e) {
       System.out.println(e.getMessage());
@@ -31,11 +32,11 @@ public class JPHServiceImpl implements JPHService {
   }
 
   @Override
-  public List<PostDTO> getPosts() {
-    PostDTO[] posts = new PostDTO[0];
+  public List<Post> getPosts() {
+    Post[] posts = new Post[0];
     try {
       posts = this.restTemplate.getForObject(
-          "https://jsonplaceholder.typicode.com/posts", PostDTO[].class);
+          "https://jsonplaceholder.typicode.com/posts", Post[].class);
     } catch (RestClientException e) {
       System.out.println(e.getMessage());
     }
@@ -43,11 +44,11 @@ public class JPHServiceImpl implements JPHService {
   }
 
   @Override
-  public List<CommentDTO> getComments() {
-    CommentDTO[] comments = new CommentDTO[0];
+  public List<Comment> getComments() {
+    Comment[] comments = new Comment[0];
     try {
       comments = this.restTemplate.getForObject(
-          "https://jsonplaceholder.typicode.com/comments", CommentDTO[].class);
+          "https://jsonplaceholder.typicode.com/comments", Comment[].class);
     } catch (Exception e) {
       System.out.println(e.getMessage());
     }

@@ -8,6 +8,7 @@ public class BcForumApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(BcForumApplication.class, args);
+		System.out.println("...API Server Started...");
 	}
 
 }

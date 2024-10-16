@@ -1,16 +1,17 @@
 package com.bootcamp.demo.bc_forum.service;
 
 import java.util.List;
-import com.bootcamp.demo.bc_forum.model.dto.jph.CommentDTO;
-import com.bootcamp.demo.bc_forum.model.dto.jph.PostDTO;
-import com.bootcamp.demo.bc_forum.model.dto.jph.UserDTO;
+
+import com.bootcamp.demo.bc_forum.model.Comment;
+import com.bootcamp.demo.bc_forum.model.Post;
+import com.bootcamp.demo.bc_forum.model.User;
 
 public interface JPHService {
 
-  List<UserDTO> getUsers();
+  List<User> getUsers();
 
-  List<PostDTO> getPosts();
+  List<Post> getPosts();
 
-  List<CommentDTO> getComments();
+  List<Comment> getComments();
 
 }

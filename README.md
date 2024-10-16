@@ -142,7 +142,14 @@
 
 
 ***
-## Week-10 Day-1 20241011
+## Week-10 Day-5 20241011
+### Holiday
+
+
+
+
+***
+## Week-11 Day-1 20241014
 - mvn compile (main code)
 - mvn test-compile (test code)
 - mvn test (main compile + test compile + test), test -> bean cycle + server starts (i.e. check autowired)
@@ -155,17 +162,20 @@
 - JPA
   - Hibernate
 
-***
-## Week-11 Day-2 20241014
-
 
 ***
-## Week-11 Day-3 20241015
-
-
-***
-## Week-11 Day-4 20241016
+## Week-11 Day-2 20241015
+// UserDTO.class (Controller Layer)
+// User.class (Service Layer)
+// UserEntity.class (Repository Layer)
 
 
 ***
-## Week-11 Day-5 20241017
+## Week-11 Day-3 20241016
+
+
+***
+## Week-11 Day-4 20241017
+
+***
+## Week-11 Day-5 20241018

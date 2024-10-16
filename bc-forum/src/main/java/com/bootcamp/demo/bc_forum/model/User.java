@@ -1,9 +1,9 @@
-package com.bootcamp.demo.bc_forum.model.dto.jph;
+package com.bootcamp.demo.bc_forum.model;
 
 import lombok.Getter;
 
 @Getter
-public class UserDTO {
+public class User {
   private int id;
   private String name;
   private String username;

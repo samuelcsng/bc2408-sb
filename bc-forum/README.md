@@ -1,1 +1,1 @@
-![alt text](BC_Forum.png)
+![alt text](./Bc_Forum.png)

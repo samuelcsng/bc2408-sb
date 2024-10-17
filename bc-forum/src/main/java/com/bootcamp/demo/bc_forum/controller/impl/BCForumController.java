@@ -4,6 +4,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import com.bootcamp.demo.bc_forum.controller.BCForumOperation;
+import com.bootcamp.demo.bc_forum.exception.CustomException1;
+import com.bootcamp.demo.bc_forum.exception.CustomException2;
+import com.bootcamp.demo.bc_forum.exception.CustomException3;
 import com.bootcamp.demo.bc_forum.mapper.JPHMapper;
 import com.bootcamp.demo.bc_forum.model.Comment;
 import com.bootcamp.demo.bc_forum.model.Post;
@@ -57,12 +60,37 @@ public class BCForumController implements BCForumOperation {
   @Override
   public UserCommentsDTO getUserComments(String userId) {
     System.out.println("...getUserComments...");
-    
-    Integer userIdInt = Integer.parseInt(userId); // Exception Handling
-    List<User> users = this.jphService.getUsers();
-    List<Post> posts = this.jphService.getPosts();
-    List<Comment> comments = this.jphService.getComments();
-    return JPHMapper.UserComments(users, posts, comments, userIdInt);
+
+    Integer userIdInt;
+    try {
+      userIdInt = Integer.parseInt(userId); // Exception Handling
+    } catch (Exception e) {
+      // throw new CustomException1("User not found");
+      throw new CustomException2("Invalid Input");
+      // throw new CustomException3("RestTemplate Error - JsonPlaceHolder");
+    }
+
+    List<User> users;
+    List<Post> posts;
+    List<Comment> comments;
+    try {
+      users = this.jphService.getUsers();
+      posts = this.jphService.getPosts();
+      comments = this.jphService.getComments();
+      // throw new Exception();
+    } catch (Exception e) {
+      throw new CustomException3("RestTemplate Error - JsonPlaceHolder");
+    }
+
+    UserCommentsDTO userCommentsDTO;
+    try {
+      userCommentsDTO =
+          JPHMapper.UserComments(users, posts, comments, userIdInt);
+    } catch (Exception e) {
+      throw new CustomException1("User not found");
+    }
+    return userCommentsDTO;
+    // return JPHMapper.UserComments(users, posts, comments, userIdInt);
   }
 
 }

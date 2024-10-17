@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
+import com.bootcamp.demo.bc_forum.exception.CustomException3;
 import com.bootcamp.demo.bc_forum.model.Comment;
 import com.bootcamp.demo.bc_forum.model.Post;
 import com.bootcamp.demo.bc_forum.model.User;
@@ -27,6 +28,7 @@ public class JPHServiceImpl implements JPHService {
       // System.out.println("users count: " + users.length);
     } catch (RestClientException e) {
       System.out.println(e.getMessage());
+      throw new CustomException3("RestTemplate Error - JsonPlaceHolder");
     }
     return List.of(users);
   }
@@ -39,6 +41,7 @@ public class JPHServiceImpl implements JPHService {
           "https://jsonplaceholder.typicode.com/posts", Post[].class);
     } catch (RestClientException e) {
       System.out.println(e.getMessage());
+      throw new CustomException3("RestTemplate Error - JsonPlaceHolder");
     }
     return List.of(posts);
   }
@@ -51,6 +54,7 @@ public class JPHServiceImpl implements JPHService {
           "https://jsonplaceholder.typicode.com/comments", Comment[].class);
     } catch (Exception e) {
       System.out.println(e.getMessage());
+      throw new CustomException3("RestTemplate Error - JsonPlaceHolder");
     }
     return List.of(comments);
   }

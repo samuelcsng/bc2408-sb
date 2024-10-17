@@ -8,6 +8,5 @@ import lombok.Getter;
 @AllArgsConstructor
 @Builder
 public class GovCatDTO {
-  private String name;
   private double tailLength;
 }

@@ -24,7 +24,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 // ! Test Controller ONLY
 @WebMvcTest(JPHController.class) // ~ Include Controller bean only
 class JPHControllerTest {
-  // ! ! WebMvcTest -> MockMvc -> Call Controller Endpoints
+  // ! WebMvcTest -> MockMvc -> Call Controller Endpoints
   // Validate functionality of endpoints, similar to Postman
 
   // ! How to use Postman for testing?
@@ -35,7 +35,7 @@ class JPHControllerTest {
   private JPHService jphService;
 
   @Autowired
-  private MockMvc mockMvc; // similar to postman, for testing only
+  private MockMvc mockMvc; // simliar to postman, for testing only
   // ! In real spring env, NO MockMvc bean.
 
   @Test
@@ -44,27 +44,25 @@ class JPHControllerTest {
     UserDTO user1 = UserDTO.builder() //
         .username("vincentlau") //
         .website("vincentlau@gmail.com") //
-        .phone("23456789") //
+        .phone("12345678") //
         .build();
 
     UserDTO user2 = UserDTO.builder() //
         .username("jennyshe") //
         .website("jennyshe@gmail.com") //
-        .phone("12345678") //
+        .phone("23456789") //
         .build();
 
     // Define how the Result is being mocked
     Mockito.when(jphService.getUsers()).thenReturn(List.of(user1, user2));
 
-    // mockMvc.perform(MockMvcRequestBuilders.get("/jph/users"))
     // ! Test Web Layer to call controller
     // ! Approach 1
     mockMvc.perform(get("/jph/users"))
-        .andExpect(jsonPath("$[0].username", Matchers.is("vincentlau")))
-        .andExpect(
-            jsonPath("$[0].website", Matchers.is("vincentlau@gmail.com")))
-        .andExpect(jsonPath("$[1].username", Matchers.is("jennyshe")))
-        .andExpect(jsonPath("$[1].website", Matchers.is("jennyshe@gmail.com")));
+        .andExpect(jsonPath("$[0].username", is("vincentlau")))
+        .andExpect(jsonPath("$[0].website", is("vincentlau@gmail.com")))
+        .andExpect(jsonPath("$[1].username", is("jennyshe")))
+        .andExpect(jsonPath("$[1].website", is("jennyshe@gmail.com")));
 
     verify(jphService, times(1)).getUsers();
 
@@ -85,16 +83,14 @@ class JPHControllerTest {
         .getResponse() //
         .getContentAsString();
 
-    // from Json to Java object (De-serialization)
-    UserDTO[] userDTOs = new ObjectMapper().readValue(resultJson, UserDTO[].class);
+    // from Json String to Java object (De-serialization)
+    UserDTO[] userDTOs =
+        new ObjectMapper().readValue(resultJson, UserDTO[].class);
 
     // Array to ArrayList
     List<UserDTO> users = Arrays.asList(userDTOs);
 
     assertThat(users.get(0).getUsername(), is("vincentlau"));
     assertThat(users.get(1).getUsername(), is("jennyshe"));
-
   }
-
-
 }

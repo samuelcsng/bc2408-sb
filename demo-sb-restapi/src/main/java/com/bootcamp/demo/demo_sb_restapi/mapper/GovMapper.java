@@ -11,7 +11,6 @@ public class GovMapper {
     return cats.stream() //
         .map( //
             c -> GovCatDTO.builder() //
-                .name(c.getName()) //
                 .tailLength(c.getTailLength()) //
                 .build() //
         ) //

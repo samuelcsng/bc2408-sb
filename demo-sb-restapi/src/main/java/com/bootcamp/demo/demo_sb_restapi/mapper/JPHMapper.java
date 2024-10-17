@@ -8,6 +8,11 @@ import com.bootcamp.demo.demo_sb_restapi.model.dto.jph.UserDTO;
 @Component
 public class JPHMapper {
   // reivse from static method to instance
+  
+  // UserDTO.class (Controller Layer)
+  // User.class (Service Layer)
+  // UserEntity.class (Repository Layer)
+
   public UserEntity map(UserDTO userDTO) {
     return UserEntity.builder() //
         .addrLat(userDTO.getAddress().getGeo().getLat()) //

@@ -4,11 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Builder
-@Setter
 @Getter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserDTO {
   private int id;
   private String name;
@@ -18,9 +18,9 @@ public class UserDTO {
   private String website;
   private Company company; // One-to-one
 
-  @Setter
   @Getter
   @AllArgsConstructor
+  @NoArgsConstructor
   public static class Address {
     private String street;
     private String suite;

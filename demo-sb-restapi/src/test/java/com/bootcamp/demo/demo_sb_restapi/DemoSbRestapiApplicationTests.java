@@ -10,7 +10,7 @@ class DemoSbRestapiApplicationTests {
   @Test // server start -> create context
   void contextLoads() {
     // This test case is just for server start + bean dependency validations
-    // i.e Autowired (required bean), @Value (yml)
+    // i.e @Autowired (required bean), @Value (yml)
   }
 
 }

@@ -172,10 +172,20 @@
 
 ***
 ## Week-11 Day-3 20241016
-
+- Spring Boot Exercise 2
 
 ***
 ## Week-11 Day-4 20241017
+- CommandLineRunner
 
+- @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+- @ManyToOne
+- @JoinColumn(name = "...", nullable = false)
+- @Builder.Default
+  @OneToMany(mappedBy = "...", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+
+- Lombok
+  @Data (for mutable objects) vs @Value(for immutable objects)
 ***
 ## Week-11 Day-5 20241018

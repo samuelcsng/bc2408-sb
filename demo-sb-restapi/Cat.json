@@ -1,15 +1,15 @@
 {
-  "name" : "catName",
-  "age" : 10,
-  "eyes" : [
+  "name": "John",
+  "age": 13,
+  "eyes": [
     {
-      "color" : "RED"
+      "color": "RED"
     },
     {
-      "color" : "RED"
+      "color": "RED"
     }
   ],
-  "tail" : {
-    "length" : 13.0
+  "tail": {
+    "length": 13.0
   }
 }

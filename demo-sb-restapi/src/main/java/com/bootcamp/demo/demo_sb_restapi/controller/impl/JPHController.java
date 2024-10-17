@@ -64,7 +64,7 @@ public class JPHController implements JPHOperation {
   }
 
   @Override
-  public UserEntity getUser(String website){
+  public UserEntity getUserByWebsite(String website) {
     return this.jphService.findByWebsite(website).orElse(null);
   }
 

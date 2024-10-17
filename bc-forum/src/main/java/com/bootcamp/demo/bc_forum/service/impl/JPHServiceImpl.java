@@ -52,6 +52,8 @@ public class JPHServiceImpl implements JPHService {
     try {
       comments = this.restTemplate.getForObject(
           "https://jsonplaceholder.typicode.com/comments", Comment[].class);
+      // comments = this.restTemplate.getForObject(
+      //     "https://jsonplaceholder.typicode.com/comments999", Comment[].class); // RestTemplate Exception
     } catch (Exception e) {
       System.out.println(e.getMessage());
       throw new CustomException3("RestTemplate Error - JsonPlaceHolder");

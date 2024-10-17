@@ -61,6 +61,7 @@ public class JPHMapper {
     List<List<Comment>> commentsByUserIdByPostIdList = postsByUserId.stream() //
         .map(post -> comments.stream() //
             .filter(comment -> comment.getPostId() == post.getId()) //
+            // .filter(comment -> comment.getPostId() == 999) // for emptyList
             .collect(Collectors.toList()) //
         ) //
         .collect(Collectors.toList());

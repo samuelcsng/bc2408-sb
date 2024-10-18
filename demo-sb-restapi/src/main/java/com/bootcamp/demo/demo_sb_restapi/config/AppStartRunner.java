@@ -9,6 +9,7 @@ import com.bootcamp.demo.demo_sb_restapi.entity.CommentEntity;
 import com.bootcamp.demo.demo_sb_restapi.entity.PostEntity;
 import com.bootcamp.demo.demo_sb_restapi.model.dto.jph.CommentDTO;
 import com.bootcamp.demo.demo_sb_restapi.model.dto.jph.PostDTO;
+import com.bootcamp.demo.demo_sb_restapi.model.dto.jph.UserDTO;
 import com.bootcamp.demo.demo_sb_restapi.service.JPHService;
 import com.bootcamp.demo.demo_sb_restapi.service.PostService;
 
@@ -30,6 +31,7 @@ public class AppStartRunner implements CommandLineRunner {
     // insert into database (design tables by entity)
     List<PostDTO> posts = this.jphService.getPosts();
     List<CommentDTO> comments = this.jphService.getComments();
+    // List<UserDTO> users = this.jphService.getUsers();
 
     List<PostEntity> postEntities = posts.stream().map(pDto -> {
       PostEntity postEntity = PostEntity.builder() //

@@ -15,15 +15,15 @@ public class JPHMapper {
 
   public UserEntity map(UserDTO userDTO) {
     return UserEntity.builder() //
-        .addrLat(userDTO.getAddress().getGeo().getLat()) //
-        .addrLng(userDTO.getAddress().getGeo().getLng()) //
-        .addrCity(userDTO.getAddress().getCity()) //
-        .addrStreet(userDTO.getAddress().getStreet()) //
-        .addrSuite(userDTO.getAddress().getSuite()) //
-        .addrZipcode(userDTO.getAddress().getZipcode()) //
-        .comBs(userDTO.getCompany().getBs()) //
-        .comCatchPhrase(userDTO.getCompany().getCatchPhrase()) //
-        .comName(userDTO.getCompany().getName()) //
+        // .addrLat(userDTO.getAddress().getGeo().getLat()) //
+        // .addrLng(userDTO.getAddress().getGeo().getLng()) //
+        // .addrCity(userDTO.getAddress().getCity()) //
+        // .addrStreet(userDTO.getAddress().getStreet()) //
+        // .addrSuite(userDTO.getAddress().getSuite()) //
+        // .addrZipcode(userDTO.getAddress().getZipcode()) //
+        // .comBs(userDTO.getCompany().getBs()) //
+        // .comCatchPhrase(userDTO.getCompany().getCatchPhrase()) //
+        // .comName(userDTO.getCompany().getName()) //
         .name(userDTO.getName()) //
         .username(userDTO.getUsername()) //
         .phone(userDTO.getPhone()) //

@@ -7,11 +7,13 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import com.bootcamp.demo.demo_sb_restapi.entity.CommentEntity;
 import com.bootcamp.demo.demo_sb_restapi.entity.PostEntity;
+import com.bootcamp.demo.demo_sb_restapi.entity.UserEntity;
 import com.bootcamp.demo.demo_sb_restapi.model.dto.jph.CommentDTO;
 import com.bootcamp.demo.demo_sb_restapi.model.dto.jph.PostDTO;
 import com.bootcamp.demo.demo_sb_restapi.model.dto.jph.UserDTO;
 import com.bootcamp.demo.demo_sb_restapi.service.JPHService;
 import com.bootcamp.demo.demo_sb_restapi.service.PostService;
+import com.bootcamp.demo.demo_sb_restapi.service.UserService;
 
 // @Autowired(required = false)
 // private CommandLineRunner runner;
@@ -19,6 +21,10 @@ import com.bootcamp.demo.demo_sb_restapi.service.PostService;
 
 @Component
 public class AppStartRunner implements CommandLineRunner {
+
+  @Autowired
+  private UserService userService;
+
   @Autowired
   private PostService postService;
 
@@ -31,30 +37,91 @@ public class AppStartRunner implements CommandLineRunner {
     // insert into database (design tables by entity)
     List<PostDTO> posts = this.jphService.getPosts();
     List<CommentDTO> comments = this.jphService.getComments();
-    // List<UserDTO> users = this.jphService.getUsers();
+    List<UserDTO> users = this.jphService.getUsers();
+    //
+    // build List<UserEntity>
+    List<UserEntity> userEntities = users.stream().map(uDto -> {
+      UserEntity userEntity = //
+          UserEntity.builder() //
+              .name(uDto.getName()) //
+              .username(uDto.getUsername()) //
+              .email(uDto.getEmail()) //
+              .phone(uDto.getPhone()) //
+              .website(uDto.getWebsite()) //
+              .build();
 
-    List<PostEntity> postEntities = posts.stream().map(pDto -> {
-      PostEntity postEntity = PostEntity.builder() //
-          .title(pDto.getTitle()) //
-          .body(pDto.getBody()) //
-          .build();
-      List<CommentEntity> commentEntities = comments.stream() //
-          .filter(cDto -> cDto.getPostId().equals(pDto.getId())) //
-          .map(cDto -> {
-            CommentEntity commentEntity = CommentEntity.builder() //
-                .body(cDto.getBody()) //
-                .email(cDto.getEmail()) //
-                .name(cDto.getName()) //
-                .build();
-            commentEntity.setPost(postEntity);
-            return commentEntity;
-          }) //
-          .collect(Collectors.toList());
-      postEntity.setComments(commentEntities);
-      return postEntity;
+      // build List<PostEntity>
+      List<PostEntity> postEntities = //
+          posts.stream() //
+              .filter(pDto -> pDto.getUserId().equals(uDto.getId())) //
+              .map( // //////
+                  pDto -> {
+                    // build postEntity
+                    PostEntity postEntity = PostEntity.builder() //
+                        .title(pDto.getTitle()) // SET title
+                        .body(pDto.getBody()) // AET body
+                        .build();
+
+                    // build List<CommentEntity>
+                    List<CommentEntity> commentEntities = comments.stream() //
+                        .filter(cDto -> cDto.getPostId().equals(pDto.getId())) //
+                        .map(cDto -> {
+                          CommentEntity commentEntity = CommentEntity.builder() //
+                              .body(cDto.getBody()) //
+                              .email(cDto.getEmail()) //
+                              .name(cDto.getName()) //
+                              .build();
+                          commentEntity.setPost(postEntity);
+                          return commentEntity;
+                        }) //
+                        .collect(Collectors.toList());
+                    // END build List<CommentEntity>
+                    postEntity.setComments(commentEntities); // SET commentEntities
+                    //
+                    postEntity.setUser(userEntity);
+                    //
+                    return postEntity;
+                    // END build postEntity
+                  }) //
+              .collect(Collectors.toList());
+      userEntity.setPosts(postEntities);
+      return userEntity;
     }).collect(Collectors.toList());
 
-    // Insert into Posts, Comments
-    postService.saveAll(postEntities);
+    userService.saveAll(userEntities);
+    ///////////////////////////////////////////////////////
+    if (false) {
+      // build List<PostEntity>
+      List<PostEntity> postEntities = posts.stream().map(pDto -> {
+        // build postEntity
+        PostEntity postEntity = PostEntity.builder() //
+            .title(pDto.getTitle()) // SET title
+            .body(pDto.getBody()) // AET body
+            .build();
+
+        // build List<CommentEntity>
+        List<CommentEntity> commentEntities = comments.stream() //
+            .filter(cDto -> cDto.getPostId().equals(pDto.getId())) //
+            .map(cDto -> {
+              CommentEntity commentEntity = CommentEntity.builder() //
+                  .body(cDto.getBody()) //
+                  .email(cDto.getEmail()) //
+                  .name(cDto.getName()) //
+                  .build();
+              commentEntity.setPost(postEntity);
+              return commentEntity;
+            }) //
+            .collect(Collectors.toList());
+        // END build List<CommentEntity>
+        postEntity.setComments(commentEntities); // SET commentEntities
+        //
+        return postEntity;
+        // END build postEntity
+      }).collect(Collectors.toList());
+      // END build List<PostEntity>
+
+      // Insert into Posts, Comments
+      postService.saveAll(postEntities);
+    }
   }
 }

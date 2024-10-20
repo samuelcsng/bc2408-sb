@@ -1,6 +1,7 @@
 package com.bootcamp.demo.bc_forum_ex3.entity;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,9 +26,11 @@ public class Comment {
 
   private String name;
   private String email;
+  @Column(length = 1000) // default 255
   private String body;
 
-  @ManyToOne(cascade = CascadeType.ALL)
+  // @ManyToOne(cascade = CascadeType.ALL)
+  @ManyToOne
   @JoinColumn(name = "post_id", nullable = false)
   private Post post;
 

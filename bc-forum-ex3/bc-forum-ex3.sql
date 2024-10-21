@@ -2,6 +2,7 @@ show databases;
 use bc_2408_bc_forum;
 show tables;
 
+-- drop tables in sequence considering the foreign keys and primary keys relationship
 drop table if exists comment;
 drop table if exists post;
 drop table if exists user;
@@ -15,3 +16,4 @@ select count(*) from comment;
 select count(*) from company;
 select count(*) from address;
 select count(*) from geo;
+

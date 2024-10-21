@@ -9,13 +9,16 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.util.List;
+import java.util.ArrayList;
 
 @Entity
+@Table(name = "posts")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -29,14 +32,13 @@ public class Post {
   private String title;
   private String body;
 
-  // @ManyToOne(cascade = CascadeType.ALL)
   @ManyToOne
   @JoinColumn(name = "user_id", nullable = false)
   private User user;
 
-  // @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
+  @Builder.Default
   @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-  private List<Comment> comments;
+  private List<Comment> comments = new ArrayList<>();
 
 
 }

@@ -7,12 +7,14 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
+@Table(name = "addresses")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -28,8 +30,8 @@ public class Address {
   private String city;
   private String zipcode;
 
-  @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-  @JoinColumn(name = "geo_id", nullable = false)
+  @OneToOne(cascade = CascadeType.ALL)
+  @JoinColumn(name = "geo_id")
   private Geo geo;
 
 }

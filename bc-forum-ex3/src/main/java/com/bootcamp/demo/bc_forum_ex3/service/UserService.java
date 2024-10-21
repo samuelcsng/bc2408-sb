@@ -90,7 +90,8 @@ public class UserService {
               List<Comment> relatedComments = comments.stream() //
                   .filter(
                       comment -> comment.getPost().getId().equals(post.getId())) //
-                  .peek(comment -> comment.setPost(userPost)) //
+                //   .peek(comment -> comment.setPost(userPost)) //
+                .map(comment -> Comment.builder().name(comment.getName()).email(comment.getEmail()).body(comment.getBody()).post(post).build())
                   .collect(Collectors.toList());
 
               userPost.setComments(relatedComments);

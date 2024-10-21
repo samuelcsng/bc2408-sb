@@ -10,10 +10,13 @@ select * from comments;
 select count(*) from comments;
 select * from companies;
 select count(*) from companies;
+select * from addresses;
+select count(*) from addresses;
 
-drop table if exists users;
-drop table if exists posts;
+-- drop in sequence considering the foreign keys and primary keys relationship
 drop table if exists comments;
+drop table if exists posts;
+drop table if exists users;
 drop table if exists companies;
 drop table if exists addresses;
 drop table if exists geos;

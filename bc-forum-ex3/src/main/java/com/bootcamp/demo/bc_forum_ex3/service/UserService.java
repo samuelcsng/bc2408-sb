@@ -8,12 +8,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.bootcamp.demo.bc_forum_ex3.dto.CommentDTO;
+import com.bootcamp.demo.bc_forum_ex3.dto.PostDTO;
+import com.bootcamp.demo.bc_forum_ex3.dto.UserDTO;
 import com.bootcamp.demo.bc_forum_ex3.entity.Address;
 import com.bootcamp.demo.bc_forum_ex3.entity.Comment;
+import com.bootcamp.demo.bc_forum_ex3.entity.CommentEntity;
 import com.bootcamp.demo.bc_forum_ex3.entity.Company;
 import com.bootcamp.demo.bc_forum_ex3.entity.Geo;
 import com.bootcamp.demo.bc_forum_ex3.entity.Post;
+import com.bootcamp.demo.bc_forum_ex3.entity.PostEntity;
 import com.bootcamp.demo.bc_forum_ex3.entity.User;
+import com.bootcamp.demo.bc_forum_ex3.entity.UserEntity;
+import com.bootcamp.demo.bc_forum_ex3.mapper.EntityMapper;
 import com.bootcamp.demo.bc_forum_ex3.repository.UserRepository;
 
 @Service
@@ -72,7 +79,7 @@ public class UserService {
 
     user.setPosts(createPostsForUser(user, posts, comments));
 
-    userRepository.save(user);
+    // userRepository.save(user);
   }
 
   private List<Post> createPostsForUser(User user, List<Post> posts,
@@ -100,4 +107,42 @@ public class UserService {
         ) //
         .collect(Collectors.toList());
   }
+
+
+
+
+      public void fetchAndStoreUsers() {
+        List<UserDTO> userDTOs = jphService.fetchUsers();
+        List<PostDTO> postDTOs = jphService.fetchPosts();
+        List<CommentDTO> commentDTOs = jphService.fetchComments();
+
+        for (UserDTO userDTO : userDTOs) {
+            saveUser(userDTO, postDTOs, commentDTOs);
+        }
+    }
+
+    private void saveUser(UserDTO userDTO, List<PostDTO> postDTOs, List<CommentDTO> commentDTOs) {
+        UserEntity user = EntityMapper.toEntity(userDTO); // Use mapper to convert DTO to Entity
+        user.setPosts(createPostsForUser(user, userDTO, postDTOs, commentDTOs)); // Create and set posts
+        userRepository.save(user);
+    }
+
+    private List<PostEntity> createPostsForUser(UserEntity user, UserDTO userDTO, List<PostDTO> postDTOs, List<CommentDTO> commentDTOs) {
+        return postDTOs.stream()
+            .filter(postDTO -> postDTO.getUserId().equals(userDTO.getId())) // Ensure userId matches
+            .map(postDTO -> {
+                PostEntity post = EntityMapper.toEntity(postDTO); // Use mapper here
+                post.setUser(user); // Associate user to post
+                post.setComments(createCommentsForPost(postDTO, commentDTOs)); // Set comments for the post
+                return post;
+            })
+            .collect(Collectors.toList()); // Collect to List
+    }
+
+    private List<CommentEntity> createCommentsForPost(PostDTO postDTO, List<CommentDTO> commentDTOs) {
+        return commentDTOs.stream()
+                .filter(commentDTO -> commentDTO.getPostId().equals(postDTO.getId())) // Match postId
+                .map(EntityMapper::toEntity) // Use mapper here
+                .collect(Collectors.toList()); // Collect to List
+    }
 }

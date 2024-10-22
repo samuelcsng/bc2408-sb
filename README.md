@@ -192,3 +192,40 @@
 
 
 ## Week-11 Day-5 20241018
+- exercise 3
+
+## Week-12 Day-1 20241021
+- exercise 3
+- Generic API Response ApiResp<T>
+``` public class ApiResp<T>{
+private String code;
+private String message;
+private List<T> data;
+}```
+
+### Week 11 Notes
+- CommandLineRunner
+- Scheduled Task
+  - Cron Expressions
+  - Fixed Delay vs Fixed Rate
+  - @EnableScheduling
+  - @Scheduled(fixedDelay = ...), @Scheduled(fixedRate = ...) // in ms
+
+- JPQL (Java Persistence Query Language)
+  - @Query(...)
+- Native Query (traditional SQL)
+  - @Query(..., nativeQuery = true)
+
+- Update Query
+  - @Transactional
+  - EntityManager
+
+
+
+## Week-12 Day-2 20241022
+
+## Week-12 Day-3 20241023
+
+## Week-12 Day-4 20241024
+
+## Week-12 Day-5 20241025

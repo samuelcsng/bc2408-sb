@@ -25,7 +25,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Builder
 // public class User {
-public class User implements Serializable{
+public class User implements Serializable {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)

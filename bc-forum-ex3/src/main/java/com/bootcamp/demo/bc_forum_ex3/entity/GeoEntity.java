@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "geos")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -20,4 +21,8 @@ public class GeoEntity {
 
     private String lat;
     private String lng;
+
+    @OneToOne
+    @JoinColumn(name = "address_id", nullable = false)
+    private AddressEntity address;
 }

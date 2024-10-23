@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class GeoDTO {
+    private Long id;
     private String lat;
     private String lng;
 }

@@ -223,6 +223,9 @@ private List<T> data;
 
 
 ## Week-12 Day-2 20241022
+- exercise 3
+- final project
+
 
 ## Week-12 Day-3 20241023
 

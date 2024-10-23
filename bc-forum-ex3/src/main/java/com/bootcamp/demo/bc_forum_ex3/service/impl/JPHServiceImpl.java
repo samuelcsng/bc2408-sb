@@ -120,6 +120,7 @@ public class JPHServiceImpl implements JPHService {
 
     private AddressDTO convertAddressToDTO(AddressEntity address) {
         return AddressDTO.builder()
+                .id(address.getId())
                 .street(address.getStreet())
                 .suite(address.getSuite())
                 .city(address.getCity())
@@ -130,6 +131,7 @@ public class JPHServiceImpl implements JPHService {
 
     private GeoDTO convertGeoToDTO(GeoEntity geo) {
         return GeoDTO.builder()
+                .id(geo.getId())
                 .lat(geo.getLat())
                 .lng(geo.getLng())
                 .build();
@@ -137,6 +139,7 @@ public class JPHServiceImpl implements JPHService {
 
     private CompanyDTO convertCompanyToDTO(CompanyEntity company) {
         return CompanyDTO.builder()
+                .id(company.getId())
                 .name(company.getName())
                 .catchPhrase(company.getCatchPhrase())
                 .bs(company.getBs())

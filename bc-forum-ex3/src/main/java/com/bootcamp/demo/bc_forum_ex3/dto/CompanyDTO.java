@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class CompanyDTO {
+    private Long id;
     private String name;
     private String catchPhrase;
     private String bs;

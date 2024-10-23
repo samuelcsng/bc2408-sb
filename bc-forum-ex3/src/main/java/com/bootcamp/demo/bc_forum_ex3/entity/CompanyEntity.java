@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "companies")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -21,4 +22,8 @@ public class CompanyEntity {
     private String name;
     private String catchPhrase;
     private String bs;
+
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private UserEntity user;
 }

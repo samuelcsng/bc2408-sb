@@ -30,10 +30,12 @@ public class EntityMapper {
         }
 
         return AddressEntity.builder()
+                .id(addressDTO.getId())
                 .street(addressDTO.getStreet())
                 .suite(addressDTO.getSuite())
                 .city(addressDTO.getCity())
                 .zipcode(addressDTO.getZipcode())
+                .user(null)
                 .geo(toEntity(addressDTO.getGeo()))
                 .build();
     }

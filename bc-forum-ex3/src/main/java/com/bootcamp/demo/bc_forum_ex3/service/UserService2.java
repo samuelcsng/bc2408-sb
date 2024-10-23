@@ -1,7 +1,10 @@
 package com.bootcamp.demo.bc_forum_ex3.service;
 
 import com.bootcamp.demo.bc_forum_ex3.dto.*;
+import com.bootcamp.demo.bc_forum_ex3.entity.AddressEntity;
 import com.bootcamp.demo.bc_forum_ex3.entity.CommentEntity;
+import com.bootcamp.demo.bc_forum_ex3.entity.CompanyEntity;
+import com.bootcamp.demo.bc_forum_ex3.entity.GeoEntity;
 import com.bootcamp.demo.bc_forum_ex3.entity.PostEntity;
 import com.bootcamp.demo.bc_forum_ex3.entity.UserEntity;
 import com.bootcamp.demo.bc_forum_ex3.mapper.EntityMapper;
@@ -37,13 +40,28 @@ public class UserService2 {
 
     private void saveUser(UserDTO userDTO, List<PostDTO> postDTOs, List<CommentDTO> commentDTOs) {
         UserEntity user = EntityMapper.toEntity(userDTO); // Use mapper to convert DTO to Entity
-        user.setPosts(createPostsForUser(user, userDTO, postDTOs, commentDTOs)); // Create and set posts
+
+        AddressEntity address = user.getAddress();
+        address.setUser(user);
+
+        GeoEntity geo = address.getGeo();
+        geo.setAddress(address);
+
+        CompanyEntity company = user.getCompany();
+        if (company != null) {
+            company.setUser(user);
+        }
+
+        // user.setPosts(createPostsForUser(user, userDTO, postDTOs, commentDTOs)); // Create and set posts
+        user.setPosts(createPostsForUser(user, postDTOs, commentDTOs)); // Create and set posts
+
         userRepository.save(user);
     }
 
-    private List<PostEntity> createPostsForUser(UserEntity user, UserDTO userDTO, List<PostDTO> postDTOs, List<CommentDTO> commentDTOs) {
+    // private List<PostEntity> createPostsForUser(UserEntity user, UserDTO userDTO, List<PostDTO> postDTOs, List<CommentDTO> commentDTOs) {
+    private List<PostEntity> createPostsForUser(UserEntity user, List<PostDTO> postDTOs, List<CommentDTO> commentDTOs) {
         return postDTOs.stream()
-            .filter(postDTO -> postDTO.getUserId().equals(userDTO.getId())) // Ensure userId matches
+            .filter(postDTO -> postDTO.getUserId().equals(user.getId())) // Ensure userId matches
             .map(postDTO -> {
                 PostEntity post = EntityMapper.toEntity(postDTO); // Use mapper here
                 post.setUser(user); // Associate user to post

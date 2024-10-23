@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "addresses")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -23,7 +24,11 @@ public class AddressEntity {
     private String city;
     private String zipcode;
 
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "geo_id", nullable = false)
+    @OneToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private UserEntity user;
+
+    @OneToOne(mappedBy = "address", cascade = CascadeType.ALL, orphanRemoval = true)
+    // @JoinColumn(name = "geo_id", nullable = false)
     private GeoEntity geo;
 }

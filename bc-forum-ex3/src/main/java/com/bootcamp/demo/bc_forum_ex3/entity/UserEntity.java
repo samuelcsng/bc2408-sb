@@ -9,6 +9,7 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name = "users")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -25,12 +26,12 @@ public class UserEntity {
     private String phone;    // Added phone field
     private String website;  // Added website field
 
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "address_id")
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    // @JoinColumn(name = "address_id")
     private AddressEntity address;
 
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "company_id")
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    // @JoinColumn(name = "company_id")
     private CompanyEntity company;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)

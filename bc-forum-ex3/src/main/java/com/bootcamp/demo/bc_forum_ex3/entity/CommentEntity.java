@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "comments")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

@@ -202,7 +202,8 @@
 private String code;
 private String message;
 private List<T> data;
-}```
+}
+```
 
 ### Week 11 Notes
 - CommandLineRunner

@@ -236,8 +236,7 @@ private List<T> data;
 - CookieManager
 
 - Entity, Repository
-  ```
-  @Entity
+  ```@Entity
   @Table()
 
   @Repository
@@ -245,16 +244,16 @@ private List<T> data;
     ...
     Optional<Entity> findByAttribute(field); // refer to SQL concept
     ...
-  }
-  ```
+  }```
+
 - CommandLineRunner
-  ```
-  @Component
+  ```@Component
   AppStartRunner implements CommandLineRunner {
     ...
     @Override
     public void run() {}
-  }
+  }```
+
 
 
 ## Week-12 Day-4 20241024

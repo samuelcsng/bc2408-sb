@@ -198,10 +198,11 @@
 - exercise 3
 - Generic API Response ApiResp<T>
 
-``` public class ApiResp<T>{
-private String code;
-private String message;
-private List<T> data;
+``` 
+public class ApiResp<T>{
+  private String code;
+  private String message;
+  private List<T> data;
 }
 ```
 
@@ -238,7 +239,8 @@ private List<T> data;
 - CookieManager
 
 - Entity, Repository
-  ``` @Entity
+  ``` 
+  @Entity
   @Table()
 
   @Repository
@@ -246,7 +248,8 @@ private List<T> data;
     ...
     Optional<Entity> findByAttribute(field); // refer to SQL concept
     ...
-  }```
+  }
+  ```
 
 - CommandLineRunner
   ```

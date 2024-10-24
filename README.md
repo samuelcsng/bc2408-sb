@@ -249,12 +249,14 @@ private List<T> data;
   }```
 
 - CommandLineRunner
-  ``` @Component
+  ```
+  @Component
   AppStartRunner implements CommandLineRunner {
     ...
     @Override
     public void run() {}
-  }```
+  }
+  ```
 
 
 

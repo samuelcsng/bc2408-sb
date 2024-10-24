@@ -198,7 +198,7 @@
 - exercise 3
 - Generic API Response ApiResp<T>
 
-```public class ApiResp<T>{
+``` public class ApiResp<T>{
 private String code;
 private String message;
 private List<T> data;
@@ -238,7 +238,7 @@ private List<T> data;
 - CookieManager
 
 - Entity, Repository
-  ```@Entity
+  ``` @Entity
   @Table()
 
   @Repository
@@ -249,7 +249,7 @@ private List<T> data;
   }```
 
 - CommandLineRunner
-  ```@Component
+  ``` @Component
   AppStartRunner implements CommandLineRunner {
     ...
     @Override

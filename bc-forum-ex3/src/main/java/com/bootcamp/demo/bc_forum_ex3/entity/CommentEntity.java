@@ -20,7 +20,8 @@ public class CommentEntity {
     private Long id;
 
     private String name;
-    private String email;
+    private String email; 
+    @Column(length = 1000) // default 255
     private String body;
 
     @ManyToOne(cascade = CascadeType.ALL)

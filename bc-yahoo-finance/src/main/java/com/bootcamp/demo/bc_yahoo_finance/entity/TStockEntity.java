@@ -1,4 +1,4 @@
-package com.bootcamp.demo.bc_forum_ex3.entity;
+package com.bootcamp.demo.bc_yahoo_finance.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,18 +11,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "geos")
+@Table(name = "tstocks")
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
-public class Geo {
-
+public class TStockEntity {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-
-  private String lat;
-  private String lng;
-
+  private String symbol;
+  
 }

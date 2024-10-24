@@ -2,18 +2,20 @@ show databases;
 use bc_2408_bc_forum;
 show tables;
 
--- drop tables in sequence considering the foreign keys and primary keys relationship
-drop table if exists comment;
-drop table if exists post;
-drop table if exists user;
-drop table if exists company;
-drop table if exists address;
-drop table if exists geo;
+-- SET FOREIGN_KEY_CHECKS = 1; 
 
-select count(*) from user;
-select count(*) from post;
-select count(*) from comment;
-select count(*) from company;
-select count(*) from address;
-select count(*) from geo;
+-- drop tables in sequence considering the foreign keys and primary keys relationship
+drop table if exists comments;
+drop table if exists posts;
+drop table if exists geos;
+drop table if exists addresses;
+drop table if exists companies;
+drop table if exists users;
+
+select count(*) from users;
+select count(*) from posts;
+select count(*) from comments;
+select count(*) from companies;
+select count(*) from addresses;
+select count(*) from geos;
 

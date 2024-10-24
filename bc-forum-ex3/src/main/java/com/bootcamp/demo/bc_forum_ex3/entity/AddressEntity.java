@@ -29,6 +29,5 @@ public class AddressEntity {
     private UserEntity user;
 
     @OneToOne(mappedBy = "address", cascade = CascadeType.ALL, orphanRemoval = true)
-    // @JoinColumn(name = "geo_id", nullable = false)
     private GeoEntity geo;
 }

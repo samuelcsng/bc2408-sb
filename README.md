@@ -228,6 +228,34 @@ private List<T> data;
 
 
 ## Week-12 Day-3 20241023
+- Dependency Injection (Constructor Injection)
+  - more classes, easier test by using @Mock
+- responseEntity = restTemplate.getForEntity("url", String.class);
+- responseEntity.getHearders()
+- responseEntity.getBody() = .getForBody()
+- CookieManager
+
+- Entity, Repository
+  ```
+  @Entity
+  @Table()
+
+  @Repository
+  interface EntityRepository extends JpaRepository<Entity,Long> {
+    ...
+    Optional<Entity> findByAttribute(field); // refer to SQL concept
+    ...
+  }
+  ```
+- CommandLineRunner
+  ```
+  @Component
+  AppStartRunner implements CommandLineRunner {
+    ...
+    @Override
+    public void run() {}
+  }
+  ```
 
 ## Week-12 Day-4 20241024
 

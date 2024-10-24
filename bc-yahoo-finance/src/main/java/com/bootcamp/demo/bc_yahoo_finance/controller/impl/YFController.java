@@ -21,7 +21,7 @@ public class YFController implements YFOperation {
   }
 
   @Override
-  public String getCrump() {
+  public String getCrumb() {
     System.out.println("...getCrump...");
     return this.yahooFinanceService.getCrumb();
   }

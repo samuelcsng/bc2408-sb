@@ -7,8 +7,8 @@ public interface YFOperation {
   @GetMapping(value = "/")
   public String getConnection();
 
-  @GetMapping(value = "/crump")
-  public String getCrump();
+  @GetMapping(value = "/crumb")
+  public String getCrumb();
 
   @GetMapping(value = "/0388")
   public String get0388();

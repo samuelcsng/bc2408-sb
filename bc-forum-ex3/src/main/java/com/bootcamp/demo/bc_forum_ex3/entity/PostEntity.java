@@ -28,6 +28,6 @@ public class PostEntity {
     @JoinColumn(name = "user_id", nullable = false)
     private UserEntity user; // Foreign key reference to UserEntity
 
-    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<CommentEntity> comments;
 }

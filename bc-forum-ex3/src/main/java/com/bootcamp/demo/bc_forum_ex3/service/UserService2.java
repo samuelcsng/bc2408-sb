@@ -9,8 +9,6 @@ import com.bootcamp.demo.bc_forum_ex3.entity.PostEntity;
 import com.bootcamp.demo.bc_forum_ex3.entity.UserEntity;
 import com.bootcamp.demo.bc_forum_ex3.mapper.EntityMapper;
 import com.bootcamp.demo.bc_forum_ex3.repository.UserRepository;
-// import com.example.demo.model.*;*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,7 +20,7 @@ public class UserService2 {
     private final UserRepository userRepository;
     private final JPHService jphService;
 
-    @Autowired
+    // @Autowired
     public UserService2(UserRepository userRepository, JPHService jphService) {
         this.userRepository = userRepository;
         this.jphService = jphService;

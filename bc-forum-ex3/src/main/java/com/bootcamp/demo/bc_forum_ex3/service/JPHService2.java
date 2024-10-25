@@ -8,7 +8,6 @@ import com.bootcamp.demo.bc_forum_ex3.entity.GeoEntity;
 import com.bootcamp.demo.bc_forum_ex3.entity.PostEntity;
 import com.bootcamp.demo.bc_forum_ex3.entity.UserEntity;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -24,7 +23,7 @@ public class JPHService2 {
     private final String JSON_PLACEHOLDER_POSTS_URL = "https://jsonplaceholder.typicode.com/posts";
     private final String JSON_PLACEHOLDER_COMMENTS_URL = "https://jsonplaceholder.typicode.com/comments";
 
-    @Autowired
+    // @Autowired
     public JPHService2(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }

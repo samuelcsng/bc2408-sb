@@ -4,7 +4,7 @@ import lombok.Getter;
 
 @Getter
 public class User {
-  private int id;
+  private Long id;
   private String name;
   private String username;
   private String email;
@@ -22,7 +22,7 @@ public class User {
     private Geo geo;
 
     @Getter
-    private static class Geo {
+    public static class Geo {
       private String lat;
       private String lng;
     }

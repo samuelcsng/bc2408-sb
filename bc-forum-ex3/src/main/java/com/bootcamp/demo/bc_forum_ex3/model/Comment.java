@@ -12,8 +12,8 @@ import lombok.Setter;
 @Getter
 @Builder
 public class Comment {
-  private int postId;
-  private int id;
+  private Long postId;
+  private Long id;
   private String name;
   private String email;
   private String body;

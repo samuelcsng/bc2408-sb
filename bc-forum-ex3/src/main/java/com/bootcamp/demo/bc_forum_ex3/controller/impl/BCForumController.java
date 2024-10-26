@@ -3,17 +3,6 @@ package com.bootcamp.demo.bc_forum_ex3.controller.impl;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
-// import com.bootcamp.demo.bc_forum.controller.BCForumOperation;
-// import com.bootcamp.demo.bc_forum.exception.CustomException1;
-// import com.bootcamp.demo.bc_forum.exception.CustomException2;
-// import com.bootcamp.demo.bc_forum.exception.CustomException3;
-// import com.bootcamp.demo.bc_forum.mapper.JPHMapper;
-// import com.bootcamp.demo.bc_forum.model.Comment;
-// import com.bootcamp.demo.bc_forum.model.Post;
-// import com.bootcamp.demo.bc_forum.model.User;
-// import com.bootcamp.demo.bc_forum.model.dto.jph.UserCommentsDTO;
-// import com.bootcamp.demo.bc_forum.model.dto.jph.UserPostCommentDTO;
-// import com.bootcamp.demo.bc_forum.service.JPHService;
 
 import com.bootcamp.demo.bc_forum_ex3.controller.BCForumOperation;
 import com.bootcamp.demo.bc_forum_ex3.exception.CustomException1;
@@ -33,7 +22,6 @@ public class BCForumController implements BCForumOperation {
 
   @Autowired
   private JPHService jphService;
-
 
   @Override
   public String getConnection() {

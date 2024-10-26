@@ -2,9 +2,6 @@ package com.bootcamp.demo.bc_forum_ex3.service;
 
 import java.util.List;
 
-import com.bootcamp.demo.bc_forum_ex3.dto.CommentDTO;
-import com.bootcamp.demo.bc_forum_ex3.dto.PostDTO;
-import com.bootcamp.demo.bc_forum_ex3.dto.UserDTO;
 import com.bootcamp.demo.bc_forum_ex3.model.Comment;
 import com.bootcamp.demo.bc_forum_ex3.model.Post;
 import com.bootcamp.demo.bc_forum_ex3.model.User;
@@ -19,9 +16,4 @@ public interface JPHService {
 
   List<Comment> getComments();
 
-  List<UserDTO> fetchUsers();
-
-  List<PostDTO> fetchPosts();
-
-  List<CommentDTO> fetchComments();
 }

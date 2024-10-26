@@ -1,6 +1,6 @@
 # pre-defined variables
 server:
-  port: 8081
+  port: 8080
 
 # pre-defined variables
 spring:

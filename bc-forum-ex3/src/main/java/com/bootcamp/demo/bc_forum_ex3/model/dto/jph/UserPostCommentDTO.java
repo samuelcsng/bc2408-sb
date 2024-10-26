@@ -17,7 +17,7 @@ import lombok.Setter;
 @Setter
 @Builder
 public class UserPostCommentDTO {
-  private int id;
+  private Long id;
   private String name;
   private String username;
   private String email;

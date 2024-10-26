@@ -1,5 +1,5 @@
 show databases;
-use bc_2408_bc_forum;
+use bc_2408_bc_forum_ex3;
 show tables;
 
 -- SET FOREIGN_KEY_CHECKS = 1; 

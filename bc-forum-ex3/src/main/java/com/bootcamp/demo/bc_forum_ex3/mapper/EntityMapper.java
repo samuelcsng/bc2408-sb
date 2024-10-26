@@ -1,94 +1,101 @@
 package com.bootcamp.demo.bc_forum_ex3.mapper;
 
-import com.bootcamp.demo.bc_forum_ex3.dto.*;
 import com.bootcamp.demo.bc_forum_ex3.entity.*;
+import com.bootcamp.demo.bc_forum_ex3.model.Comment;
+import com.bootcamp.demo.bc_forum_ex3.model.Post;
+import com.bootcamp.demo.bc_forum_ex3.model.User;
+import com.bootcamp.demo.bc_forum_ex3.model.User.Address;
+import com.bootcamp.demo.bc_forum_ex3.model.User.Address.Geo;
+import com.bootcamp.demo.bc_forum_ex3.model.User.Company;
 
 public class EntityMapper {
 
-    // Map UserDTO to UserEntity
-    public static UserEntity toEntity(UserDTO userDTO) {
-        if (userDTO == null) {
+    // Map User to UserEntity
+    public static UserEntity toEntity(User user) {
+        if (user == null) {
             return null;
         }
 
         return UserEntity.builder()
-                .id(userDTO.getId())
-                .name(userDTO.getName())
-                .username(userDTO.getUsername())
-                .email(userDTO.getEmail())
-                .phone(userDTO.getPhone())      // Set phone field
-                .website(userDTO.getWebsite())  // Set website field
-                .address(toEntity(userDTO.getAddress()))
-                .company(toEntity(userDTO.getCompany()))
+                .id(user.getId())
+                .name(user.getName())
+                .username(user.getUsername())
+                .email(user.getEmail())
+                .phone(user.getPhone())      // Set phone field
+                .website(user.getWebsite())  // Set website field
+                .address(toEntity(user.getAddress()))
+                .company(toEntity(user.getCompany()))
                 .build();
     }
 
-    // Map AddressDTO to AddressEntity
-    public static AddressEntity toEntity(AddressDTO addressDTO) {
-        if (addressDTO == null) {
+    // Map Address to AddressEntity
+    public static AddressEntity toEntity(Address address) {
+        if (address == null) {
             return null;
         }
 
         return AddressEntity.builder()
-                .id(addressDTO.getId())
-                .street(addressDTO.getStreet())
-                .suite(addressDTO.getSuite())
-                .city(addressDTO.getCity())
-                .zipcode(addressDTO.getZipcode())
-                .user(null)
-                .geo(toEntity(addressDTO.getGeo()))
+                // .id(address.getId())
+                .street(address.getStreet())
+                .suite(address.getSuite())
+                .city(address.getCity())
+                .zipcode(address.getZipcode())
+                // .user(null)
+                .geo(toEntity(address.getGeo()))
                 .build();
     }
 
-    // Map GeoDTO to GeoEntity
-    public static GeoEntity toEntity(GeoDTO geoDTO) {
-        if (geoDTO == null) {
+    // Map Geo to GeoEntity
+    public static GeoEntity toEntity(Geo geo) {
+        if (geo == null) {
             return null;
         }
 
         return GeoEntity.builder()
-                .lat(geoDTO.getLat())
-                .lng(geoDTO.getLng())
+                .lat(geo.getLat())
+                .lng(geo.getLng())
+                // .address(null)
                 .build();
     }
 
-    // Map CompanyDTO to CompanyEntity
-    public static CompanyEntity toEntity(CompanyDTO companyDTO) {
-        if (companyDTO == null) {
+    // Map Company to CompanyEntity
+    public static CompanyEntity toEntity(Company company) {
+        if (company == null) {
             return null;
         }
 
         return CompanyEntity.builder()
-                .name(companyDTO.getName())
-                .catchPhrase(companyDTO.getCatchPhrase())
-                .bs(companyDTO.getBs())
+                .name(company.getName())
+                .catchPhrase(company.getCatchPhrase())
+                .bs(company.getBs())
+                // .user(null)
                 .build();
     }
 
-    // Map PostDTO to PostEntity
-    public static PostEntity toEntity(PostDTO postDTO) {
-        if (postDTO == null) {
+    // Map Post to PostEntity
+    public static PostEntity toEntity(Post post) {
+        if (post == null) {
             return null;
         }
 
         return PostEntity.builder()
-                .id(postDTO.getId())
-                .title(postDTO.getTitle())
-                .body(postDTO.getBody())
+                .id(post.getId())
+                .title(post.getTitle())
+                .body(post.getBody())
                 .build();
     }
 
-    // Map CommentDTO to CommentEntity
-    public static CommentEntity toEntity(CommentDTO commentDTO) {
-        if (commentDTO == null) {
+    // Map Comment to CommentEntity
+    public static CommentEntity toEntity(Comment comment) {
+        if (comment == null) {
             return null;
         }
 
         return CommentEntity.builder()
-                .id(commentDTO.getId())
-                .name(commentDTO.getName())
-                .email(commentDTO.getEmail())
-                .body(commentDTO.getBody())
+                .id(comment.getId())
+                .name(comment.getName())
+                .email(comment.getEmail())
+                .body(comment.getBody())
                 .build();
     }
 }

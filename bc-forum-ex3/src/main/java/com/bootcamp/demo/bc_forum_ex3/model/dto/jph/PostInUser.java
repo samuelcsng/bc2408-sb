@@ -14,7 +14,7 @@ import lombok.Setter;
 @Setter
 @Builder
 public class PostInUser {
-  private int id;
+  private Long id;
   private String title;
   private String body;
   private List<CommentInPost> comments;

@@ -12,8 +12,8 @@ import lombok.Setter;
 @Setter
 @Builder
 public class Post {
-  private int userId;
-  private int id;
+  private Long userId;
+  private Long id;
   private String title;
   private String body;
 

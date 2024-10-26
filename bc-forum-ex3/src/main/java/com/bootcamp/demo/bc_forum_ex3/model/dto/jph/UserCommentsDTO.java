@@ -14,7 +14,7 @@ import lombok.Setter;
 @Getter
 @Builder
 public class UserCommentsDTO {
-  private int id;
+  private Long id;
   private String username;
   private List<CommentInUser> comments;
   // private List<Comment> comments;

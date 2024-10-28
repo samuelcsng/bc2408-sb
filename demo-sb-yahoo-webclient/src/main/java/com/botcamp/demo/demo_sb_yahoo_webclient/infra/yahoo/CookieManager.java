@@ -29,8 +29,8 @@ public class CookieManager {
       List<String> cookies = headers == null ? null : headers.get("Set-Cookie");
       if (cookies == null || cookies.isEmpty())
         return null;
-      System.out.println("...catch...");
-      System.out.println(cookies);
+      // System.out.println("...catch...");
+      // System.out.println(cookies);
       return cookies.get(0).split(";")[0]; // String -> String[] -> String
     }
   }

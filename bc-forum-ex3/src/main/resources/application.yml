@@ -15,7 +15,7 @@ spring:
     username: "root"
     password: "admin1234"
   jpa:
-    show-sql: true
+    show-sql: false
     # hibernate.ddl-auto: create
     # hibernate.ddl-auto: none
 

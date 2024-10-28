@@ -187,13 +187,12 @@
 
 - Lombok
   @Data (for mutable objects) vs @Value(for immutable objects)
+
 ***
-
-
-
 ## Week-11 Day-5 20241018
 - exercise 3
 
+***
 ## Week-12 Day-1 20241021
 - exercise 3
 - Generic API Response ApiResp<T>
@@ -206,6 +205,7 @@ public class ApiResp<T>{
 }
 ```
 
+***
 ### Week 11 Notes
 - CommandLineRunner
 - Scheduled Task
@@ -224,12 +224,12 @@ public class ApiResp<T>{
   - EntityManager
 
 
-
+***
 ## Week-12 Day-2 20241022
 - exercise 3
 - final project
 
-
+***
 ## Week-12 Day-3 20241023
 - Dependency Injection (Constructor Injection)
   - more classes, easier test by using @Mock
@@ -262,10 +262,53 @@ public class ApiResp<T>{
   ```
 
 
-
+***
 ## Week-12 Day-4 20241024
+- exercise 3
+- final project
 
 
-
-
+***
 ## Week-12 Day-5 20241025
+- exercise 3
+- final Project
+- Redis
+
+***
+## Week-13 Day-1 20241028
+- Redis
+  - to reduce workload of database
+- dependency
+  - spring-boot-starter-data-redis
+- deserialization
+  - JSON string to Java Object
+  - this.restTemplate.getForObject(url, xxx.class)
+  - ObjectMapper
+  ``` 
+  @Bean
+  RedisTemplate<String, String> redisTemplate(RedisConnectionFactory redisConnectionFactory){
+    RedisTemplate<String, String> redisTemplate = new RedisTemplate<>();
+    redisTemplate.setConnectionFactory(redisConnectionFactory);
+    .setKeySerializer
+    .setValueSeerializer
+    .afterPropertiesSet
+    return redisTemplate;
+  }
+
+***
+## Week-13 Day-2 20241029
+
+
+
+***
+## Week-13 Day-3 20241030
+
+
+
+***
+## Week-13 Day-4 20241031
+
+
+
+***
+## Week-13 Day-5 20241101

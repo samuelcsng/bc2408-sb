@@ -20,10 +20,12 @@ public class CompanyEntity {
     private Long id;
 
     private String name;
+
     private String catchPhrase;
+
     private String bs;
 
     @OneToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false)
     private UserEntity user;
 }

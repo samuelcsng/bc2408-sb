@@ -20,11 +20,13 @@ public class CommentEntity {
     private Long id;
 
     private String name;
+
     private String email; 
+    
     @Column(length = 1000) // default 255
     private String body;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "post_id", nullable = false)
     private PostEntity post; // Foreign key reference to PostEntity
 }

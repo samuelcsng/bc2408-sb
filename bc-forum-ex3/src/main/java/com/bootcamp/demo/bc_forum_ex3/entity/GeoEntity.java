@@ -20,9 +20,11 @@ public class GeoEntity {
     private Long id;
 
     private String lat;
+
     private String lng;
 
     @OneToOne
     @JoinColumn(name = "address_id", nullable = false)
     private AddressEntity address;
+    
 }

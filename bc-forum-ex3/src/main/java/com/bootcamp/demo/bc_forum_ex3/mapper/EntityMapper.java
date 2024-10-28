@@ -15,14 +15,13 @@ public class EntityMapper {
         if (user == null) {
             return null;
         }
-
         return UserEntity.builder()
-                .id(user.getId())
+                // .id(user.getId())
                 .name(user.getName())
                 .username(user.getUsername())
                 .email(user.getEmail())
-                .phone(user.getPhone())      // Set phone field
-                .website(user.getWebsite())  // Set website field
+                .phone(user.getPhone())
+                .website(user.getWebsite())
                 .address(toEntity(user.getAddress()))
                 .company(toEntity(user.getCompany()))
                 .build();
@@ -33,7 +32,6 @@ public class EntityMapper {
         if (address == null) {
             return null;
         }
-
         return AddressEntity.builder()
                 // .id(address.getId())
                 .street(address.getStreet())
@@ -50,7 +48,6 @@ public class EntityMapper {
         if (geo == null) {
             return null;
         }
-
         return GeoEntity.builder()
                 .lat(geo.getLat())
                 .lng(geo.getLng())
@@ -63,7 +60,6 @@ public class EntityMapper {
         if (company == null) {
             return null;
         }
-
         return CompanyEntity.builder()
                 .name(company.getName())
                 .catchPhrase(company.getCatchPhrase())
@@ -77,7 +73,6 @@ public class EntityMapper {
         if (post == null) {
             return null;
         }
-
         return PostEntity.builder()
                 .id(post.getId())
                 .title(post.getTitle())
@@ -90,7 +85,6 @@ public class EntityMapper {
         if (comment == null) {
             return null;
         }
-
         return CommentEntity.builder()
                 .id(comment.getId())
                 .name(comment.getName())
@@ -98,4 +92,5 @@ public class EntityMapper {
                 .body(comment.getBody())
                 .build();
     }
+
 }

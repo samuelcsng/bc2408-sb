@@ -1,96 +1,89 @@
 package com.bootcamp.demo.bc_forum_ex3.controller.impl;
 
+import java.time.LocalTime;
 import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bootcamp.demo.bc_forum_ex3.controller.BCForumOperation;
-import com.bootcamp.demo.bc_forum_ex3.exception.CustomException1;
-import com.bootcamp.demo.bc_forum_ex3.exception.CustomException2;
-import com.bootcamp.demo.bc_forum_ex3.exception.CustomException3;
-import com.bootcamp.demo.bc_forum_ex3.mapper.JPHMapper;
-import com.bootcamp.demo.bc_forum_ex3.model.Comment;
-import com.bootcamp.demo.bc_forum_ex3.model.Post;
-import com.bootcamp.demo.bc_forum_ex3.model.User;
+import com.bootcamp.demo.bc_forum_ex3.dto.UserDTO;
+import com.bootcamp.demo.bc_forum_ex3.entity.PostEntity;
+import com.bootcamp.demo.bc_forum_ex3.entity.UserEntity;
+import com.bootcamp.demo.bc_forum_ex3.mapper.DTOMapper;
+import com.bootcamp.demo.bc_forum_ex3.entity.CommentEntity;
 import com.bootcamp.demo.bc_forum_ex3.model.dto.jph.UserCommentsDTO;
 import com.bootcamp.demo.bc_forum_ex3.model.dto.jph.UserPostCommentDTO;
-import com.bootcamp.demo.bc_forum_ex3.service.JPHService;
+import com.bootcamp.demo.bc_forum_ex3.service.UserService;
 
 @RestController
-// @RequestMapping("/api")
 public class BCForumController implements BCForumOperation {
 
   @Autowired
-  private JPHService jphService;
+  private UserService userService;
 
   @Override
   public String getConnection() {
-    System.out.println("...getConnection...");
-    return "API Connected ...!!!";
+    System.out.println("\n...repository:getConnection...");
+    return LocalTime.now() + "...repository_API_Connected...";
   }
 
   @Override
-  public List<User> getUsers() {
-    System.out.println("...getUsers...");
-    return this.jphService.getUsers();
+  public List<UserDTO> getUsers() {
+    System.out.println("...repository:getUsers...");
+    List<UserEntity> userEntities = userService.getUsers();
+    List<UserDTO> userDTOs = //
+        userEntities.stream() //
+            .map(uEntity -> DTOMapper.toDTO(uEntity)) //
+            .collect(Collectors.toList());
+    return userDTOs;
   }
 
   @Override
-  public List<Post> getPosts() {
-    System.out.println("...getPosts...");
-    return this.jphService.getPosts();
+  public List<PostEntity> getPosts() {
+    // TODO Auto-generated method stub
+    System.out.println("...repository:getPosts...");
+    return null;
+    // throw new UnsupportedOperationException("Unimplemented method 'getPosts'");
   }
 
   @Override
-  public List<Comment> getComments() {
-    System.out.println("...getComments...");
-    return this.jphService.getComments();
+  public List<CommentEntity> getComments() {
+    // TODO Auto-generated method stub
+    System.out.println("...repository:getComments...");
+    return null;
+    // throw new UnsupportedOperationException(
+    // "Unimplemented method 'getComments'");
   }
 
   @Override
   public List<UserPostCommentDTO> getUsersPostsComments() {
-    System.out.println("...getUsersPostsComments...");
-
-    List<User> users = this.jphService.getUsers();
-    List<Post> posts = this.jphService.getPosts();
-    List<Comment> comments = this.jphService.getComments();
-    return JPHMapper.UsersPostsComments(users, posts, comments);
+    // TODO Auto-generated method stub
+    System.out.println("...repository:getUsersPostsComments...");
+    return null;
+    // throw new UnsupportedOperationException(
+    // "Unimplemented method 'getUsersPostsComments'");
   }
 
   @Override
   public UserCommentsDTO getUserComments(String userId) {
-    System.out.println("...getUserComments...");
+    // TODO Auto-generated method stub
+    System.out.println("...repository:getUserComments...");
+    return null;
+    // throw new UnsupportedOperationException(
+    // "Unimplemented method 'getUserComments'");
+  }
 
-    Integer userIdInt;
-    try {
-      userIdInt = Integer.parseInt(userId); // Exception Handling
-    } catch (Exception e) {
-      // throw new CustomException1("User not found");
-      throw new CustomException2("Invalid Input");
-      // throw new CustomException3("RestTemplate Error - JsonPlaceHolder");
-    }
-
-    List<User> users;
-    List<Post> posts;
-    List<Comment> comments;
-    try {
-      users = this.jphService.getUsers();
-      posts = this.jphService.getPosts();
-      comments = this.jphService.getComments();
-      // throw new Exception();
-    } catch (Exception e) {
-      throw new CustomException3("RestTemplate Error - JsonPlaceHolder");
-    }
-
-    UserCommentsDTO userCommentsDTO;
-    try {
-      userCommentsDTO =
-          JPHMapper.UserComments(users, posts, comments, userIdInt);
-    } catch (Exception e) {
-      throw new CustomException1("User not found");
-    }
-    return userCommentsDTO;
-    // return JPHMapper.UserComments(users, posts, comments, userIdInt);
+  @Override
+  public UserDTO getUser(String userId) {
+    // TODO Auto-generated method stub
+    System.out.println("...repository:getUserById...");
+    Long usetIdLong = Long.parseLong(userId); // try
+    UserEntity userEntity = userService.getUserById(usetIdLong);
+    UserDTO userDTO = DTOMapper.toDTO(userEntity);
+    return userDTO;
+    // throw new UnsupportedOperationException("Unimplemented method 'getUser'");
   }
 
 }

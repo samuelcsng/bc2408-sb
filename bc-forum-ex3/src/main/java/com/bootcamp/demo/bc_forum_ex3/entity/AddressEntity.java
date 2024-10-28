@@ -20,14 +20,18 @@ public class AddressEntity {
     private Long id;
 
     private String street;
+
     private String suite;
+
     private String city;
+
     private String zipcode;
 
     @OneToOne
     @JoinColumn(name = "user_id", nullable = false)
     private UserEntity user;
 
-    @OneToOne(mappedBy = "address", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(mappedBy = "address", cascade = CascadeType.ALL,
+            orphanRemoval = true, fetch = FetchType.LAZY)
     private GeoEntity geo;
 }

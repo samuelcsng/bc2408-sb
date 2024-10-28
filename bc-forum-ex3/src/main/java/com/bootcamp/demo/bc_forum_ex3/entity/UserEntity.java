@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import jakarta.persistence.*;
 import java.util.List;
+import java.util.ArrayList;
 
 @Entity
 @Table(name = "users")
@@ -16,26 +17,30 @@ import java.util.List;
 @Builder
 public class UserEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Long id;
 
-    private String name;
-    private String username;
-    private String email;
-    private String phone;
-    private String website;
+        private String name;
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL,
-            orphanRemoval = true)
-    private AddressEntity address;
+        private String username;
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL,
-            orphanRemoval = true)
-    private CompanyEntity company;
+        private String email;
 
-    // @Builder.Default
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL,
-            orphanRemoval = true, fetch = FetchType.LAZY)
-    private List<PostEntity> posts;
+        private String phone;
+
+        private String website;
+
+        @OneToOne(mappedBy = "user", cascade = CascadeType.ALL,
+                        orphanRemoval = true, fetch = FetchType.LAZY)
+        private AddressEntity address;
+
+        @OneToOne(mappedBy = "user", cascade = CascadeType.ALL,
+                        orphanRemoval = true, fetch = FetchType.LAZY)
+        private CompanyEntity company;
+
+        @Builder.Default
+        @OneToMany(mappedBy = "user", cascade = CascadeType.ALL,
+                        orphanRemoval = true, fetch = FetchType.LAZY)
+        private List<PostEntity> posts = new ArrayList<>();
 }

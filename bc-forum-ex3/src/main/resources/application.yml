@@ -16,7 +16,8 @@ spring:
     password: "admin1234"
   jpa:
     show-sql: true
-    hibernate.ddl-auto: create
+    # hibernate.ddl-auto: create
+    # hibernate.ddl-auto: none
 
 # Custom variables
 api:

@@ -7,6 +7,9 @@ public interface YFOperation {
   @GetMapping(value = "/")
   public String getConnection();
 
+  @GetMapping(value = "/cookie")
+  public String getCookie();
+
   @GetMapping(value = "/crumb")
   public String getCrumb();
 

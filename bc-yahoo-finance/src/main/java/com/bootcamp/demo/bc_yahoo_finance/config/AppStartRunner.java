@@ -6,6 +6,9 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.ArrayList;
 import com.bootcamp.demo.bc_yahoo_finance.entity.TStockEntity;
+import com.bootcamp.demo.bc_yahoo_finance.infra.yahoo.CookieManager;
+import com.bootcamp.demo.bc_yahoo_finance.infra.yahoo.CrumbManager;
+import com.bootcamp.demo.bc_yahoo_finance.infra.yahoo.StockManager;
 import com.bootcamp.demo.bc_yahoo_finance.repository.TStockRepository;
 
 @Component
@@ -13,6 +16,17 @@ public class AppStartRunner implements CommandLineRunner {
 
   @Autowired
   TStockRepository tStockRepository;
+
+  @Autowired
+  CookieManager cookieManager;
+
+  @Autowired
+  CrumbManager crumbManager;
+
+  @Autowired
+  StockManager stockManager;
+
+
 
   @Override
   public void run(String... args) throws Exception {
@@ -29,6 +43,13 @@ public class AppStartRunner implements CommandLineRunner {
 
     tStockRepository.saveAll(tStockEntities);
     System.out.println(tStockRepository.findAll());
+
+    //
+    String quotes =
+        stockManager.getQuotes(List.of("0388.HK", "0700.HK", "0005.HK"));
+    System.out.println(quotes);
+
+
 
     System.out.println("...AppStartRunner End...");
   }

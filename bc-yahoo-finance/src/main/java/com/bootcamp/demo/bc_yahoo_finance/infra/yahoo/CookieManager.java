@@ -3,9 +3,11 @@ package com.bootcamp.demo.bc_yahoo_finance.infra.yahoo;
 import java.util.List;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
+@Component
 public class CookieManager {
   private static final String COOKIE_URL = "https://fc.yahoo.com";
   private RestTemplate restTemplate; // Tool A (Dependency of CookieManager)
@@ -26,6 +28,7 @@ public class CookieManager {
       // System.out.println(e.getClass().getName()); // HttpClientErrorException
       HttpHeaders headers = e.getResponseHeaders();
       List<String> cookies = headers == null ? null : headers.get("Set-Cookie");
+      System.out.println(cookies);
       if (cookies == null || cookies.isEmpty())
         return null;
       return cookies.get(0).split(";")[0]; // String -> String[] -> String

@@ -297,7 +297,9 @@ public class ApiResp<T>{
 
 ***
 ## Week-13 Day-2 20241029
-
+- stock price quotation: bid/ask
+- stock traction
+- JavaScript vs Java vs Python
 
 
 ***

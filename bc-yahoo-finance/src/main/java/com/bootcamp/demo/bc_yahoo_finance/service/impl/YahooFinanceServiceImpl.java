@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
+import com.bootcamp.demo.bc_yahoo_finance.infra.yahoo.CookieManager;
+import com.bootcamp.demo.bc_yahoo_finance.infra.yahoo.CrumbManager;
 import com.bootcamp.demo.bc_yahoo_finance.model.dto.yf.YFDTO;
 import com.bootcamp.demo.bc_yahoo_finance.service.YahooFinanceService;
 
@@ -21,17 +23,24 @@ public class YahooFinanceServiceImpl implements YahooFinanceService {
   @Qualifier(value = "YFRestTemplate") // inject bean by speicifc bean name
   private RestTemplate restTemplate;
 
+  @Autowired
+  private CrumbManager crumbManager;
+
   @Override
   public String getCrumb() {
-    String crumb = "";
-    try {
-      crumb =
-          this.restTemplate.getForObject(YAHOO_FINANCE_CRUMB_URL, String.class);
-      System.out.println("...crumb..." + crumb);
-    } catch (RestClientException e) {
-      System.out.println("...crump exception..." + e.getMessage());
-    }
-    return crumb;
+    // String crumb = "";
+    // try {
+    //   // TODO set cookiestring to headers
+    //   crumb =
+    //       this.restTemplate.getForObject(YAHOO_FINANCE_CRUMB_URL, String.class);
+    //   System.out.println("...crumb..." + crumb);
+    // } catch (RestClientException e) {
+    //   System.out.println("...crump exception..." + e.getMessage());
+    // }
+    // String crumb = new CrumbManager(restTemplate).getCrumb();
+    // System.out.println(crumb);
+    // return crumb;
+    return "";
   }
 
   @Override
@@ -43,5 +52,14 @@ public class YahooFinanceServiceImpl implements YahooFinanceService {
     } catch (RestClientException e) {
       System.out.println("...get0388 exception..." + e.getMessage());
     }
+  }
+
+  @Override
+  public String getCookie() {
+    // TODO Auto-generated method stub
+    String cookieString = new CookieManager(new RestTemplate()).getCookie();
+    // System.out.println(cookieString);
+    return cookieString;
+    // throw new UnsupportedOperationException("Unimplemented method 'getCookie'");
   }
 }

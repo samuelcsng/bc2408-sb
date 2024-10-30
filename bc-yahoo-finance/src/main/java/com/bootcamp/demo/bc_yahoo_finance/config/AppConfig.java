@@ -8,9 +8,19 @@ import org.springframework.web.client.RestTemplate;
 public class AppConfig {
 
   @Bean(name = "YFRestTemplate")
-  RestTemplate RestTemplateForYF() {
+  RestTemplate restTemplateForYF() {
     return new RestTemplate();
   }
+
+  // @Bean
+  // CookieManager cookieManager(RestTemplate restTemplate) {
+  //   return new CookieManager(restTemplate);
+  // }
+
+  // @Bean
+  // CrumbManager crumbManager() {
+  //   return new CrumbManager();
+  // }
 
 }
 

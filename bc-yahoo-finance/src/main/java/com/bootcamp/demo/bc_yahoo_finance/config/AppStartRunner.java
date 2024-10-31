@@ -32,6 +32,7 @@ public class AppStartRunner implements CommandLineRunner {
   public void run(String... args) throws Exception {
     System.out.println("...AppStartRunner Start...");
 
+    System.out.println("...DataBase Operation start...");
     TStockEntity HK0388 = TStockEntity.builder().symbol("0388.HK").build();
     TStockEntity HK0700 = TStockEntity.builder().symbol("0700.HK").build();
     TStockEntity HK0005 = TStockEntity.builder().symbol("0005.HK").build();
@@ -43,11 +44,14 @@ public class AppStartRunner implements CommandLineRunner {
 
     tStockRepository.saveAll(tStockEntities);
     System.out.println(tStockRepository.findAll());
+    System.out.println("...DataBase Operation end...");
 
     //
+    System.out.println("...quotes fetching start...");
     String quotes =
         stockManager.getQuotes(List.of("0388.HK", "0700.HK", "0005.HK"));
-    System.out.println(quotes);
+    System.out.println(quotes.length());
+    System.out.println("...quotes fetching end...");
 
 
 

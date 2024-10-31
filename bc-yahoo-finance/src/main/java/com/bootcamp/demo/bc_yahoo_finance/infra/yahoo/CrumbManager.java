@@ -1,6 +1,7 @@
 package com.bootcamp.demo.bc_yahoo_finance.infra.yahoo;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -15,6 +16,7 @@ public class CrumbManager {
       "https://query1.finance.yahoo.com/v1/test/getcrumb";
 
   private RestTemplate restTemplate; // Tool A (Dependency of CookieManager)
+  @Autowired
   private CookieManager cookieManager;
   private String crumb;
   String cookie;
@@ -26,14 +28,15 @@ public class CrumbManager {
   }
 
   public String getCrumb() {
-    String cookie = new CookieManager(new RestTemplate()).getCookie();
-    System.out.println("Cookie: " + cookie);
+    // String cookie = new CookieManager(new RestTemplate()).getCookie();
+    this.cookie = cookieManager.getCookie();
+    System.out.println("Cookie: " + this.cookie);
 
     // String crumb = "";
     try {
       HttpHeaders headers = new HttpHeaders();
       headers.add("User-Agent", "Mozilla/5.0");
-      headers.add("Cookie", cookie);
+      headers.add("Cookie", this.cookie);
       HttpEntity<String> entity = new HttpEntity<>(headers);
       ResponseEntity<String> response = this.restTemplate.exchange(CRUMB_URL,
           HttpMethod.GET, entity, String.class);

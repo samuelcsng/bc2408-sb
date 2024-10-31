@@ -31,7 +31,7 @@ public class YFController implements YFOperation {
   @Override
   public String get0388() {
     System.out.println("...get0388...");
-    this.yahooFinanceService.get0388();
+    // return this.yahooFinanceService.get0388();
     return "...get0388...";
   }
 

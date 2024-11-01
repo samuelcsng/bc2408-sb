@@ -304,8 +304,27 @@ public class ApiResp<T>{
 
 ***
 ## Week-13 Day-3 20241030
-
-
+- yahoo finance project
+- week 14
+  - Monolithic Application
+    - TPS/QPS
+    - distributed architectures
+    - CAP Theorem
+  - Microservices Architecture
+    - service decoupling
+    - JSON interchange between services
+    - each service language independent
+    - independently deployable
+    - scalability
+  - deploy pipeline
+    - Jenkins
+  - Load Balancer
+    - stateless application
+    - Nginx
+    - distribution algorithm
+  - AWS
+    - Account sign up
+    - Putty, CyberDuck
 
 ***
 ## Week-13 Day-4 20241031

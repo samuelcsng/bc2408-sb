@@ -6,11 +6,15 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.bootcamp.demo.bc_yahoo_finance.model.dto.yf.YFDTO;
+import com.bootcamp.demo.bc_yahoo_finance.model.dto.yf.YFDTO.QuoteResponse;
+import com.bootcamp.demo.bc_yahoo_finance.model.dto.yf.YFDTO.QuoteResponse.Quote;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Component
@@ -30,30 +34,54 @@ public class StockManager {
 
   public String getQuotes(List<String> symbols)
       throws IOException, InterruptedException {
-    this.crumb = crumbManager.getCrumb();
-    this.cookie = crumbManager.cookie;
+    this.symbols = String.join(",", symbols);
     // this.symbols = symbols.stream().reduce("", (partialString, element) -> partialString.isEmpty() ? element
     // : partialString + "," + element);
-    this.symbols = String.join(",", symbols);
-
+    this.crumb = crumbManager.getCrumb();
+    this.cookie = crumbManager.cookie;
     String url =
         YAHOO_FINANCE_URL + "?symbols=" + this.symbols + "&crumb=" + crumb;
-    System.out.println("...url...\n" + url);
     System.out.println("...cookie..." + this.cookie);
     System.out.println("...crumb..." + this.crumb);
+    System.out.println("...url...\n" + url);
     try {
       HttpRequest request = HttpRequest.newBuilder() //
           .uri(URI.create(url)) //
-          // .header("Cookie", crumbManager.cookie) //
           .header("Cookie", this.cookie) //
           .GET() //
           .build();
       HttpResponse<String> response =
           client.send(request, HttpResponse.BodyHandlers.ofString());
-      // System.out.println(objectMapper.readValue(response.body(), YFDTO.class));
       YFDTO yFDTO = objectMapper.readValue(response.body(), YFDTO.class);
-      System.out.println(yFDTO.getQuoteResponse().getResult().size());
-      System.out.println(yFDTO.getQuoteResponse().getError());
+
+      Stream<Quote> quoteStream = yFDTO.getQuoteResponse().getResult().stream();
+      List<String> symbolsStrList = //
+          quoteStream //
+              .map(quote -> {
+                String symbol = quote.getSymbol();
+                Long marketTime = quote.getRegularMarketTime();
+                float marketPrice = quote.getRegularMarketPrice();
+                float marketChgPercent = quote.getRegularMarketChangePercent();
+                float bid = quote.getBid();
+                Long bidSize = quote.getBidSize();
+                float ask = quote.getAsk();
+                Long askSize = quote.getAskSize();
+                
+                System.out.println("...quote getted..." + symbol);
+                System.out.println(marketTime);
+                System.out.println(marketPrice);
+                System.out.println(marketChgPercent);
+                System.out.println(bid);
+                System.out.println(bidSize);
+                System.out.println(ask);
+                System.out.println(askSize);
+                return symbol;
+              }) //
+              .collect(Collectors.toList());
+      System.out
+          .println("...number of quotes getted..." + symbolsStrList.size());
+      // System.out.println(yFDTO.getQuoteResponse().getError());
+
       return response.body();
       // return String.valueOf(response.body().length());
     } catch (InterruptedException e) {

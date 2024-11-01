@@ -50,7 +50,7 @@ public class AppStartRunner implements CommandLineRunner {
     System.out.println("...quotes fetching start...");
     String quotes =
         stockManager.getQuotes(List.of("0388.HK", "0700.HK", "0005.HK"));
-    System.out.println(quotes.length());
+    // System.out.println(quotes.length());
     System.out.println("...quotes fetching end...");
 
 

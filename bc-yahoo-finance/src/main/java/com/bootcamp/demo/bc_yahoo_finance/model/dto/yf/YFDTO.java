@@ -2,8 +2,6 @@ package com.bootcamp.demo.bc_yahoo_finance.model.dto.yf;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -30,7 +28,8 @@ public class YFDTO {
     @AllArgsConstructor
     @NoArgsConstructor
     @Builder
-    private static class Quote {
+    public
+    static class Quote {
       private String language;
       private String region;
       private String quoteType;

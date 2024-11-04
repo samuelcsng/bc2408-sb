@@ -324,12 +324,35 @@ public class ApiResp<T>{
     - distribution algorithm
   - AWS
     - Account sign up
-    - Putty, CyberDuck
+    - install JDK
+    - Putty(Windows), CyberDuck(MacOS), ssh -i ...(CLI)
 
 ***
 ## Week-13 Day-4 20241031
-
-
+- yahoo finance project
 
 ***
 ## Week-13 Day-5 20241101
+- AWS
+  - ssh command
+    - ssh -i "***.pem" ***@***
+  - ftp command
+    - ftp vs sftp
+    - sftp -i "/path/to/private_key.pem" ununtu@remote_instance
+    - put /path/to/application.jar
+    - ls
+    - bye // to exit SFTP
+  - execute .jar file
+    - java -jar ***.jar
+  - execute .jar file in backgroupd
+    - java -jar ***.jar >...
+    - nohup java -jav application.jar > output.log 2>&1 &
+      - nohup: process continue running after log out
+      - 2>&1: redirect standard error to standard output
+      - &: runs the command in the background
+  - kill a process
+    - ps aux | grep java
+    - kill -9 <PID> (Forcefully)
+    - kill <PID> (Gracefully)
+  - CyperDuct, PuTTY
+  - Spring Boot helloworld in AWS

@@ -5,6 +5,11 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -12,6 +17,7 @@ import java.util.stream.Stream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.bootcamp.demo.bc_yahoo_finance.entity.QuoteEntity;
 import com.bootcamp.demo.bc_yahoo_finance.model.dto.yf.YFDTO;
 import com.bootcamp.demo.bc_yahoo_finance.model.dto.yf.YFDTO.QuoteResponse;
 import com.bootcamp.demo.bc_yahoo_finance.model.dto.yf.YFDTO.QuoteResponse.Quote;
@@ -52,9 +58,10 @@ public class StockManager {
           .build();
       HttpResponse<String> response =
           client.send(request, HttpResponse.BodyHandlers.ofString());
-      YFDTO yFDTO = objectMapper.readValue(response.body(), YFDTO.class);
 
+      YFDTO yFDTO = objectMapper.readValue(response.body(), YFDTO.class);
       Stream<Quote> quoteStream = yFDTO.getQuoteResponse().getResult().stream();
+
       List<String> symbolsStrList = //
           quoteStream //
               .map(quote -> {
@@ -66,9 +73,17 @@ public class StockManager {
                 Long bidSize = quote.getBidSize();
                 float ask = quote.getAsk();
                 Long askSize = quote.getAskSize();
-                
+
                 System.out.println("...quote getted..." + symbol);
-                System.out.println(marketTime);
+                System.out.println(marketTime); // unit in seconds
+                // System.out.println(new Date(marketTime * 1000));
+                // System.out.println(LocalDateTime.ofInstant(
+                // Instant.ofEpochSecond(marketTime), ZoneId.systemDefault()));
+                System.out.println(ZonedDateTime.ofInstant(
+                    Instant.ofEpochSecond(marketTime), ZoneId.systemDefault())); // or ZoneId.("Asia/Hong_Kong")
+                System.out.println(
+                    ZonedDateTime.ofInstant(Instant.ofEpochSecond(marketTime),
+                        ZoneId.of("America/New_York")));
                 System.out.println(marketPrice);
                 System.out.println(marketChgPercent);
                 System.out.println(bid);
@@ -81,6 +96,27 @@ public class StockManager {
       System.out
           .println("...number of quotes getted..." + symbolsStrList.size());
       // System.out.println(yFDTO.getQuoteResponse().getError());
+
+      // System.out.println(quoteStream.count());
+      // List<QuoteEntity> quoteEntities = //
+      //     quoteStream //
+      //         .map(quote -> {
+      //           System.out.println(quote.getSymbol());
+      //           QuoteEntity quoteEntity = //
+      //               QuoteEntity.builder() //
+      //                   .symbol(quote.getSymbol()) //
+      //                   .marketTime(quote.getRegularMarketTime()) //
+      //                   .marketPrice(quote.getRegularMarketPrice()) //
+      //                   .marketChgPercent(quote.getRegularMarketChangePercent()) //
+      //                   .bid(quote.getBid()) //
+      //                   .bidSize(quote.getBidSize()) //
+      //                   .ask(quote.getAsk()) //
+      //                   .askSize(quote.getAskSize()) //
+      //                   .build();
+      //           return quoteEntity;
+      //         }) //
+      //         .collect(Collectors.toList());
+      // System.out.println(quoteEntities.size());
 
       return response.body();
       // return String.valueOf(response.body().length());

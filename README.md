@@ -336,23 +336,60 @@ public class ApiResp<T>{
 - AWS
   - ssh command
     - ssh -i "***.pem" ***@***
-  - ftp command
-    - ftp vs sftp
-    - sftp -i "/path/to/private_key.pem" ununtu@remote_instance
-    - put /path/to/application.jar
-    - ls
-    - bye // to exit SFTP
+    - `ssh -i "/path/to/private_key.pem" ununtu@remote_instance`
+  - ftp(sftp) command
+    - ftp(port 21) vs sftp(port 22 same as ssh)
+    - `sftp -i "/path/to/private_key.pem" ununtu@remote_instance`
+    - `put /path/to/application.jar`
+    - `ls`
+    - `bye` // to exit SFTP
   - execute .jar file
-    - java -jar ***.jar
+    - `java -jar ***.jar`
   - execute .jar file in backgroupd
     - java -jar ***.jar >...
-    - nohup java -jav application.jar > output.log 2>&1 &
-      - nohup: process continue running after log out
+    - `nohup java -jav application.jar > output.log 2>&1 &`
+      - nohup: process continue running after ssh log out
       - 2>&1: redirect standard error to standard output
       - &: runs the command in the background
+    - `tail -f output.log`
   - kill a process
-    - ps aux | grep java
-    - kill -9 <PID> (Forcefully)
-    - kill <PID> (Gracefully)
+    - `ps aux | grep java`
+    - `kill <PID>` (Gracefully)
+    - `kill -9 <PID>` (Forcefully)
+  - AWS CLI
   - CyperDuct, PuTTY
   - Spring Boot helloworld in AWS
+
+
+
+***
+## Week-14 Day-1 20241104
+- Docker
+  - public cloud vs private cloud vs hybrid cloud
+- AWS
+  - cloud, On-The-Go
+  - Hypervisor
+  - transport control: TPS/QPS Transaction per second, Quote per second
+  - Scaling vertical, Scaling horizontal
+- Virtual Machine
+  - (isolation) docupling of hardware and software(OS and App)
+- Container
+  - (isolation) docupling of os and app
+  - Container Engine
+  - Dockerfile (build) Docker Image (run) Docker Container
+- DevOps Engineer
+- Kubernetes
+- Docker Demo
+  - frontend: react framework
+
+***
+## Week-14 Day-2 20241105
+
+***
+## Week-14 Day-3 20241106
+
+***
+## Week-14 Day-4 20241107
+
+***
+## Week-14 Day-5 20241108

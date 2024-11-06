@@ -384,6 +384,30 @@ public class ApiResp<T>{
 
 ***
 ## Week-14 Day-2 20241105
+- Spring Boot Actuator
+  - dependency ...
+  - auxiliary endpoints for health check, app info, shutdown operation ...
+  
+  `@Value`
+  ``` 
+  @Autowired
+  private Environment env;
+
+- Swagger
+  - dependency
+  - Swagger ver3 = OpenAPI Spec ver3
+  - Controller Operation Interface vs Controller Implementation
+  - editor.swagger.io
+    - format: yaml or json
+  - Code-First vs Design-First
+- Types of API
+  - RESTful API
+  - GraphQL API
+  - gRPC
+  - SOAP
+
+- Thymeleaf
+  - server-side html rendering
 
 ***
 ## Week-14 Day-3 20241106
